@@ -11,7 +11,7 @@
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Google Fonts: Dancing Script สำหรับตัวเขียน & Plus Jakarta Sans / Prompt สำหรับเนื้อหา -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -40,10 +40,10 @@
 
 <body class="bg-[#f8f9fa] text-slate-800 font-sans min-h-screen select-none overflow-x-hidden">
 
-  <!-- ==================== SECTION 1: HERO COMPOSITION WORKSPACE (LAYOUT เดิม) ==================== -->
+  <!-- ==================== SECTION 1: HERO COMPOSITION WORKSPACE ==================== -->
   <div class="min-h-screen flex flex-col items-center justify-between p-3 sm:p-8 pb-16">
 
-    <!-- Top Navbar (Responsive: Desktop Floating Capsule / Mobile Hamburger + ScrollSpy Active) -->
+    <!-- Top Navbar -->
     <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-3 pb-2 pointer-events-none">
       <div class="max-w-5xl mx-auto flex items-center justify-between sm:justify-center relative">
 
@@ -116,7 +116,6 @@
     </header>
 
     <script>
-      // ฟังก์ชันเปิด-ปิดเมนูบนมือถือ
       function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -140,17 +139,14 @@
         }
       }
 
-      // ระบบ ScrollSpy + ล็อก Home เมื่ออยู่บนสุดหรือตอนเริ่ม
       document.addEventListener('DOMContentLoaded', () => {
         const sections = document.querySelectorAll('section[id]');
         const desktopLinks = document.querySelectorAll('#desktop-nav .nav-link');
         const mobileLinks = document.querySelectorAll('#mobile-nav .mobile-nav-link');
 
-        // คลาสตกแต่งสถานะ Active
         const desktopActiveClass = ['text-slate-900', 'font-bold', 'border-b-2', 'border-tealDark', 'pb-0.5'];
         const mobileActiveClass = ['bg-teal-50', 'text-tealDark', 'font-bold'];
 
-        // ฟังก์ชันสั่งสลับคลาส Active ไปยัง targetId
         function setActiveLink(targetId) {
           desktopLinks.forEach(link => {
             const isMatch = link.getAttribute('href') === targetId;
@@ -171,23 +167,17 @@
           });
         }
 
-        // 1. ตั้งค่าเริ่มต้นตอนเริ่มหน้าเว็บ: เช็กตำแหน่ง scroll ปัจจุบัน
         if (window.scrollY < 120) {
           setActiveLink('#hero');
         }
 
-        // 2. ตรวจสอบตอนเลื่อนจอ: ถ้ากลับขึ้นมาบนสุดให้บังคับเป็น #hero ทันที
         window.addEventListener('scroll', () => {
           if (window.scrollY < 120) {
             setActiveLink('#hero');
           }
-        }, {
-          passive: true
-        });
+        }, { passive: true });
 
-        // 3. Intersection Observer: ตรวจจับแต่ละ Section เมื่อเลื่อนผ่าน
         const observer = new IntersectionObserver((entries) => {
-          // ถ้าอยู่บนสุดให้ scroll event จัดการเป็น Home ต่อไป ไม่ต้องแย่ง active
           if (window.scrollY < 120) return;
 
           entries.forEach(entry => {
@@ -197,7 +187,7 @@
             }
           });
         }, {
-          rootMargin: '-25% 0px -45% 0px' // โฟกัสช่วงกลางจอ
+          rootMargin: '-25% 0px -45% 0px'
         });
 
         sections.forEach(section => observer.observe(section));
@@ -208,14 +198,11 @@
     <main id="hero"
       class="w-full max-w-5xl my-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0 lg:relative lg:h-[780px] py-4 lg:py-0">
 
-      <!-- Left Floating Sidebar Bar (Vertical PORTFOLIO Text with Icon) -->
+      <!-- Left Floating Sidebar Bar -->
       <div class="lg:absolute lg:left-4 lg:top-[70px] z-20 flex flex-row lg:flex-col items-center gap-4 lg:gap-6">
         <div
           class="bg-tealDark text-white px-5 py-2.5 lg:py-7 lg:px-0 lg:w-10 rounded-full flex flex-row lg:flex-col items-center justify-center gap-2 shadow-md">
-          <!-- ไอคอนหน้าข้อความ -->
           <i data-lucide="briefcase" class="w-3.5 h-3.5 text-teal-200 shrink-0"></i>
-
-          <!-- ข้อความแนวตั้ง -->
           <span
             class="text-[11px] font-black tracking-[0.35em] uppercase select-none lg:[writing-mode:vertical-rl] lg:rotate-180 text-teal-100">
             WELCOME !!
@@ -224,27 +211,24 @@
         <div class="hidden lg:block w-[2px] h-24 bg-tealDark/70 rounded-full"></div>
       </div>
 
-      <!-- Center Card: Main Poster with Overlay Signature (Bleeding Outside Frame) -->
+      <!-- Center Card: Main Poster -->
       <div
         class="relative w-[90vw] max-w-[340px] sm:max-w-[420px] lg:w-[460px] h-[480px] sm:h-[580px] lg:h-[640px] shrink-0 flex items-center justify-center">
 
-        <!-- รูปภาพพร้อมขอบมน -->
         <div
           class="w-full h-full rounded-[32px] sm:rounded-[40px] overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
           <img src="a1.png" alt="Auamdow Phapolmon" class="w-full h-full object-cover object-center" />
         </div>
 
-        <!-- ข้อความลายเซ็น: ขยายขนาดใหญ่ขึ้น ชัดเจน ล้นออกมานอกกรอบพอดีตา -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none pb-8 z-10">
           <span
             class="font-script text-white text-7xl sm:text-9xl lg:text-[10.5rem] drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)] select-none whitespace-nowrap -mx-8 sm:-mx-14 lg:-mx-20">
             Portfolio
           </span>
         </div>
-
       </div>
 
-      <!-- Center Bottom: Pop-up Scroll Card with Pill Buttons -->
+      <!-- Center Bottom: Pop-up Scroll Card -->
       <div
         class="lg:absolute lg:bottom-2 lg:left-1/2 lg:-translate-x-1/2 z-30 flex flex-col items-center w-full max-w-[290px] sm:max-w-xs">
         <button
@@ -272,7 +256,7 @@
         </a>
       </div>
 
-      <!-- Bottom Left: Floating Info Card & Strip -->
+      <!-- Bottom Left: Floating Info Card -->
       <div class="lg:absolute lg:left-6 lg:bottom-16 z-20 flex flex-col items-center sm:items-start gap-2">
         <div class="bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-slate-100 w-52 flex flex-col">
           <div class="flex items-center gap-2 mb-1">
@@ -295,17 +279,14 @@
 
       <!-- Right: Smartphone Music Player Mockup -->
       <div class="lg:absolute lg:-right-4 sm:lg:right-6 lg:top-1/2 lg:-translate-y-1/2 z-30 flex flex-col items-center">
-        <!-- จัดวางกึ่งกลาง outer frame ของสมาร์ตโฟน -->
-        <span class="text-[11px] font-semibold text-slate-700 text-center w-full mb-1">Now Playing • Chill
-          Vibes</span>
+        <span class="text-[11px] font-semibold text-slate-700 text-center w-full mb-1">Now Playing • Chill Vibes</span>
 
-        <!-- iPhone Outer Frame -->
         <div
           class="w-[210px] sm:w-[225px] h-[360px] bg-phoneBorder rounded-[40px] p-2.5 shadow-2xl border-4 border-slate-700/80 relative">
           <div
             class="w-full h-full bg-slate-950 rounded-[32px] overflow-hidden relative flex flex-col justify-between p-3 text-white">
 
-            <!-- Cozy Cafe / Chill Background Wallpaper -->
+            <!-- Background Wallpaper -->
             <div class="absolute inset-0 -z-10 opacity-35">
               <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=500&auto=format&fit=crop"
                 class="w-full h-full object-cover" />
@@ -328,7 +309,6 @@
                 <span class="text-slate-200 font-medium truncate">Cafe Acoustic Sessions</span>
                 <span class="text-[8px] text-teal-300">Now Playing</span>
               </div>
-              <!-- Animated Equalizer Bars -->
               <div class="flex items-end gap-0.5 h-3 ml-auto shrink-0 pr-1">
                 <span class="w-0.5 h-2.5 bg-teal-400 rounded-full animate-pulse"></span>
                 <span class="w-0.5 h-3.5 bg-teal-300 rounded-full animate-pulse" style="animation-delay: 150ms"></span>
@@ -348,15 +328,13 @@
                 </div>
               </div>
 
-              <div class="font-script text-base leading-tight text-center text-slate-900">Afternoon Coffee & Dogs
-              </div>
+              <div class="font-script text-base leading-tight text-center text-slate-900">Afternoon Coffee & Dogs</div>
               <div class="text-[9px] text-slate-500 font-sans tracking-tight mb-2">Lofi Beats • Chill Acoustic</div>
 
               <!-- Audio Progress Bar -->
               <div class="w-full mb-2 px-1">
                 <div class="w-full bg-slate-200 h-1 rounded-full relative flex items-center">
-                  <div id="player-progress" class="bg-tealDark w-2/5 h-full rounded-full transition-all duration-300">
-                  </div>
+                  <div id="player-progress" class="bg-tealDark w-2/5 h-full rounded-full transition-all duration-300"></div>
                   <div class="w-2 h-2 bg-tealDark rounded-full shadow -ml-0.5"></div>
                 </div>
               </div>
@@ -370,7 +348,6 @@
                   <i data-lucide="skip-back" class="w-3.5 h-3.5 fill-current"></i>
                 </button>
 
-                <!-- Play / Pause Button with Toggle Script -->
                 <button id="chill-play-btn" type="button"
                   class="w-7 h-7 rounded-full bg-tealDark hover:bg-tealAccent text-white flex items-center justify-center shadow-md transition transform active:scale-95"
                   onclick="toggleChillAudio()">
@@ -385,7 +362,6 @@
                 </button>
               </div>
 
-              <!-- Hidden Audio Element -->
               <audio id="chill-audio" loop
                 src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
             </div>
@@ -394,7 +370,7 @@
         </div>
       </div>
 
-      <!-- Audio Toggle Script -->
+      <!-- Audio Script -->
       <script>
         function toggleChillAudio() {
           const audio = document.getElementById('chill-audio');
@@ -443,18 +419,16 @@
               d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.88 2.89 2.89 0 0 1-2.88-2.88 2.89 2.89 0 0 1 2.88-2.88c.37 0 .72.07 1.05.2V9.91a6.32 6.32 0 0 0-1.05-.09A6.33 6.33 0 0 0 3 16.15 6.33 6.33 0 0 0 9.33 22.5a6.33 6.33 0 0 0 6.33-6.35V8.71a8.17 8.17 0 0 0 4.93 1.63V6.89a4.85 4.85 0 0 1-1-.2z" />
           </svg>
         </a>
-
       </div>
       <span class="text-[11px] text-slate-400 font-medium">082-7829949 • auamdowpamonphon@gmail.com •
         auamdowpa.github.io/portfolio</span>
     </footer>
   </div>
 
-  <!-- ==================== NEW SECTION: ABOUT ME (เนื้อหาหน้า 1 และ 2 จาก PDF) ==================== -->
+  <!-- ==================== SECTION: ABOUT ME ==================== -->
   <section id="about-me" class="py-20 bg-gradient-to-b from-[#f8f9fa] to-white border-t border-slate-200/80">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
 
-      <!-- Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-3">
         <div>
           <span
@@ -475,7 +449,6 @@
         </div>
       </div>
 
-      <!-- Bio Quote Banner -->
       <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-sm mb-10 relative overflow-hidden">
         <div class="w-2 h-full bg-tealDark absolute left-0 top-0"></div>
         <p class="text-slate-700 text-sm sm:text-base leading-relaxed italic pl-2">
@@ -485,10 +458,7 @@
         </p>
       </div>
 
-      <!-- Main 2-Column Grid: Education & Experience + Skills & Media -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-        <!-- Left Column: Education, Experience & Award -->
         <div class="lg:col-span-7 space-y-6">
 
           <!-- Experience Card -->
@@ -503,7 +473,6 @@
             </div>
             <p class="text-xs text-slate-400 mt-0.5">Dog Café, Food & Beverage, Pet Hotel, Dog Services</p>
 
-            <!-- 6 Bullet Points from PDF -->
             <ul class="mt-4 space-y-2 text-xs text-slate-600 leading-relaxed">
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 rounded-full bg-tealDark mt-1.5 shrink-0"></span>
@@ -547,7 +516,7 @@
             </p>
           </div>
 
-          <!-- Award & Achievement Card -->
+          <!-- Award Card -->
           <div class="bg-amber-50/70 border border-amber-200/80 rounded-3xl p-5 shadow-xs flex items-start gap-3.5">
             <div
               class="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-bold text-base shrink-0 shadow-sm">
@@ -566,10 +535,9 @@
 
         </div>
 
-        <!-- Right Column: Skills Breakdown & QR Interactive Box -->
+        <!-- Right Column: Skills & QR -->
         <div class="lg:col-span-5 space-y-6">
 
-          <!-- Hard & Soft Skills Breakdown -->
           <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
             <div class="flex items-center gap-2 text-tealDark font-bold text-xs uppercase tracking-wider">
               <i data-lucide="sparkles" class="w-4 h-4 text-amber-500"></i>
@@ -645,7 +613,6 @@
             </div>
           </div>
 
-          <!-- Interactive QR / Media Note from PDF Page 2 -->
           <div class="bg-[#1e4d58] text-white rounded-3xl p-6 shadow-md flex items-center gap-5">
             <div class="w-20 h-20 bg-white p-2 rounded-2xl shrink-0 flex items-center justify-center shadow">
               <img src="image/qrcode.png" alt="QR Code" class="w-full h-full object-contain">
@@ -665,13 +632,12 @@
           </div>
 
         </div>
-
       </div>
 
     </div>
   </section>
 
-  <!-- ==================== SECTION 2: TABLE OF CONTENTS (PDF หน้า 2) ==================== -->
+  <!-- ==================== SECTION 2: TABLE OF CONTENTS ==================== -->
   <section id="toc" class="py-20 bg-white border-y border-slate-200/80">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="text-center max-w-xl mx-auto mb-12">
@@ -680,15 +646,12 @@
         </span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Portfolio Categories</h2>
         <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
-          มีไฟล์ภาพและวิดีโอจำนวนมากที่สามารถเข้าดูผ่าน QR Code
-          หรือเลือกคลิกดูงานที่เกี่ยวข้องในแต่ละหมวดหมู่ด้านล่างได้เลยน้าา
+          มีไฟล์ภาพและวิดีโอจำนวนมากที่สามารถเข้าดูผ่าน QR Code หรือเลือกคลิกดูงานที่เกี่ยวข้องในแต่ละหมวดหมู่ด้านล่างได้เลยน้าา
         </p>
       </div>
 
-      <!-- ปรับรองรับ 6 หมวดหมู่: Mobile 2 คอลัมน์, Tablet 3 คอลัมน์, Desktop 6 คอลัมน์ -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
 
-        <!-- Category 1: Graphic Design -->
         <a href="#menu-design"
           class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
           <div
@@ -699,7 +662,6 @@
           <p class="text-[11px] text-slate-500 mt-1 leading-snug">Menu & Posters</p>
         </a>
 
-        <!-- Category 2: Advertising -->
         <a href="#digital-ads"
           class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
           <div
@@ -710,7 +672,6 @@
           <p class="text-[11px] text-slate-500 mt-1 leading-snug">Promo & Ads</p>
         </a>
 
-        <!-- Category 3: Photographer -->
         <a href="#photo-caption"
           class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
           <div
@@ -721,7 +682,6 @@
           <p class="text-[11px] text-slate-500 mt-1 leading-snug">Photos & Retouch</p>
         </a>
 
-        <!-- Category 4: Video Editor -->
         <a href="#video-content"
           class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
           <div
@@ -732,7 +692,6 @@
           <p class="text-[11px] text-slate-500 mt-1 leading-snug">Reels & Commercial</p>
         </a>
 
-        <!-- Category 5: Product Design (เพิ่มใหม่) -->
         <a href="#product-design"
           class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
           <div
@@ -743,7 +702,6 @@
           <p class="text-[11px] text-slate-500 mt-1 leading-snug">Branding & Mockup</p>
         </a>
 
-        <!-- Category 6: Event & Exhibition (เพิ่มใหม่) -->
         <a href="#events"
           class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
           <div
@@ -758,7 +716,7 @@
     </div>
   </section>
 
-  <!-- ==================== SECTION 3: 01 MENU DESIGN (PDF หน้า 3) ==================== -->
+  <!-- ==================== SECTION 3: 01 MENU DESIGN ==================== -->
   <section id="menu-design" class="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
       <div>
@@ -773,21 +731,20 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <!-- รูปที่ 1: Matcha Series Menu -->
+      <!-- รูปที่ 1: Soup Menu -->
       <div
         class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
         <div>
           <div
             class="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-50 relative flex items-center justify-center">
-            <img src="image/a/1.webp" alt="Matcha Menu" class="w-full h-full object-contain" />
+            <img src="image/a/1.webp" alt="Soup Menu" class="w-full h-full object-contain" />
             <span
               class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded-full text-tealDark">
               Signature Menu
             </span>
           </div>
           <h4 class="font-bold text-slate-900 text-sm">Soup Series Menu</h4>
-          <p class="text-[11px] text-slate-500 mt-1">จัดเลย์เอาต์เมนูซุป เช่น ซุปครีมเห็ดทรัฟเฟิล (189฿), ซุปข้าวโพด
-            (179฿)</p>
+          <p class="text-[11px] text-slate-500 mt-1">จัดเลย์เอาต์เมนูซุป เช่น ซุปครีมเห็ดทรัฟเฟิล (189฿), ซุปข้าวโพด (179฿)</p>
         </div>
       </div>
 
@@ -804,8 +761,7 @@
             </span>
           </div>
           <h4 class="font-bold text-slate-900 text-sm">Salad Menu & Toppings</h4>
-          <p class="text-[11px] text-slate-500 mt-1">ซีซาร์สลัด (169฿) พร้อมตัวเลือกน้ำสลัด 4 สไตล์ และท็อปปิ้งไข่ต้ม
-            เบคอนกรอบ อกไก่ย่าง (+49฿)</p>
+          <p class="text-[11px] text-slate-500 mt-1">ซีซาร์สลัด (169฿) พร้อมตัวเลือกน้ำสลัด 4 สไตล์ และท็อปปิ้งไข่ต้ม เบคอนกรอบ อกไก่ย่าง (+49฿)</p>
         </div>
       </div>
 
@@ -822,8 +778,7 @@
             </span>
           </div>
           <h4 class="font-bold text-slate-900 text-sm">Songkran Signature Mocktail</h4>
-          <p class="text-[11px] text-slate-500 mt-1">เครื่องดื่มม็อกเทลและสเปเชียลตี้ เช่น Muscat Fizz, Yuzu Blossom,
-            Tiramisu Latte และ Virgin Mojito</p>
+          <p class="text-[11px] text-slate-500 mt-1">เครื่องดื่มม็อกเทลและสเปเชียลตี้ เช่น Muscat Fizz, Yuzu Blossom, Tiramisu Latte และ Virgin Mojito</p>
         </div>
       </div>
 
@@ -840,8 +795,7 @@
             </span>
           </div>
           <h4 class="font-bold text-slate-900 text-sm">Premium Tea Pot Series</h4>
-          <p class="text-[11px] text-slate-500 mt-1">ชาพรีเมียมเสิร์ฟแบบกา (150฿) ชา TWG รสผลไม้-วานิลลา
-            และชาดอกไม้หอมอย่าง Chamomile, Lavender</p>
+          <p class="text-[11px] text-slate-500 mt-1">ชาพรีเมียมเสิร์ฟแบบกา (150฿) ชา TWG รสผลไม้-วานิลลา และชาดอกไม้หอมอย่าง Chamomile, Lavender</p>
         </div>
       </div>
 
@@ -858,8 +812,7 @@
             </span>
           </div>
           <h4 class="font-bold text-slate-900 text-sm">Matcha Specialty Series</h4>
-          <p class="text-[11px] text-slate-500 mt-1">ซีรีส์มัทฉะแท้เข้มข้น มัทฉะลาเต้ (159฿), เพียวมัทฉะ (149฿)
-            และมัทฉะส้มสดชื่น (159฿)</p>
+          <p class="text-[11px] text-slate-500 mt-1">ซีรีส์มัทฉะแท้เข้มข้น มัทฉะลาเต้ (159฿), เพียวมัทฉะ (149฿) และมัทฉะส้มสดชื่น (159฿)</p>
         </div>
       </div>
 
@@ -876,8 +829,7 @@
             </span>
           </div>
           <h4 class="font-bold text-slate-900 text-sm">Drinks Menu Catalog</h4>
-          <p class="text-[11px] text-slate-500 mt-1">ตารางเมนูเครื่องดื่มครบวงจร ทั้งหมวด Coffee และ Non-Coffee
-            พร้อมราคา ร้อน / เย็น / ปั่น ชัดเจน</p>
+          <p class="text-[11px] text-slate-500 mt-1">ตารางเมนูเครื่องดื่มครบวงจร ทั้งหมวด Coffee และ Non-Coffee พร้อมราคา ร้อน / เย็น / ปั่น ชัดเจน</p>
         </div>
       </div>
 
@@ -894,15 +846,14 @@
             </span>
           </div>
           <h4 class="font-bold text-slate-900 text-sm">All-Day Brunch & Steak</h4>
-          <p class="text-[11px] text-slate-500 mt-1">Big Dog Classic Breakfast (420฿), Egg & Bacon (229฿), Australian
-            Sirloin Steak (890฿) และซุปครีม</p>
+          <p class="text-[11px] text-slate-500 mt-1">Big Dog Classic Breakfast (420฿), Egg & Bacon (229฿), Australian Sirloin Steak (890฿) และซุปครีม</p>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ==================== SECTION 4: 02 DIGITAL ADVERTISING (PDF หน้า 4) ==================== -->
+  <!-- ==================== SECTION 4: 02 DIGITAL ADVERTISING ==================== -->
   <section id="digital-ads" class="py-20 bg-white border-y border-slate-200/80">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
@@ -916,7 +867,6 @@
         <span class="text-xs font-semibold text-slate-400">Social Ad Campaigns</span>
       </div>
 
-      <!-- แถวละ 2 ภาพ (Grid 2 คอลัมน์) ขนาดใหญ่ขึ้นและเห็นรายละเอียดชัดเจน -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- รูปที่ 1: 1 Free 1 Swimming (April Campaign) -->
         <div
@@ -984,8 +934,7 @@
               <img src="image/b/4.png" alt="Midweek Splash 30% OFF" class="w-full h-full object-contain" />
             </div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-tealDark bg-teal-100 px-2.5 py-0.5 rounded-full">Special 30%
-                OFF</span>
+              <span class="text-xs font-bold text-tealDark bg-teal-100 px-2.5 py-0.5 rounded-full">Special 30% OFF</span>
               <span class="text-xs text-slate-400 font-medium">Midweek Special</span>
             </div>
             <h4 class="font-bold text-base text-slate-900">Midweek Splash! สระว่ายน้ำสุนัข</h4>
@@ -996,7 +945,7 @@
         </div>
       </div>
     </div>
-    <!-- ปุ่ม Action ด้านล่างสำหรับดูภาพ/แคมเปญทั้งหมด -->
+
     <div class="mt-12 flex justify-center">
       <a href="https://drive.google.com/drive/folders/12lv_aR3xY5-LZeemXwmIh82VNv-qQM__"
         class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 hover:bg-tealDark text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
@@ -1007,7 +956,7 @@
     </div>
   </section>
 
-  <!-- ==================== SECTION 5: 03 PET PHOTO & CAPTION (PDF หน้า 5) ==================== -->
+  <!-- ==================== SECTION 5: 03 PET PHOTO & CAPTION ==================== -->
   <section id="photo-caption" class="py-20 px-4 sm:px-6 max-w-5xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
       <div>
@@ -1075,7 +1024,7 @@
         </div>
       </div>
     </div>
-    <!-- ปุ่ม Action ด้านล่างสำหรับดูภาพ/แคมเปญทั้งหมด -->
+
     <div class="mt-12 flex justify-center">
       <a href="https://drive.google.com/drive/folders/12lv_aR3xY5-LZeemXwmIh82VNv-qQM__"
         class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 hover:bg-tealDark text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
@@ -1086,13 +1035,11 @@
     </div>
   </section>
 
-  <!-- ==================== SECTION 6: 04 & 05 COMMERCIAL & VIDEO CONTENT ==================== -->
+  <!-- ==================== SECTION 6: 04 & 05 COMMERCIAL & VIDEO CONTENT (แก้ปัญหา OVERLOAD) ==================== -->
   <section id="video-content" class="py-20 bg-[#162a30] text-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
 
-      <!-- Row 1: รายละเอียดเนื้อหา + วิดีโอหลักใน Phone Mockup -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
         <!-- Text & Detail Column -->
         <div class="lg:col-span-6 space-y-5">
           <span class="text-teal-300 font-extrabold text-xs uppercase tracking-wider">Project 04 & 05</span>
@@ -1121,20 +1068,18 @@
               <div>
                 <h4 class="font-bold text-sm">Reels & Viral Content Creation</h4>
                 <p class="text-xs text-slate-300 mt-0.5">คอนเทนต์น้องหมาคิดเลขได้, น้องหมาประจำโซนหมาเล็ก, หรือคลิปแมว
-                  vs หมา
-                  เรียกยอดแชร์และคอมเมนต์ต่อเนื่อง</p>
+                  vs หมา เรียกยอดแชร์และคอมเมนต์ต่อเนื่อง</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Main TikTok Video (คืนค่าแสงธรรมชาติแบบเดิม) -->
+        <!-- Main Video Frame: คงไว้ 1 คลิป เพื่อไม่ให้โดน Rate Limit -->
         <div class="lg:col-span-6 flex justify-center">
           <div
             class="w-[300px] sm:w-[320px] bg-phoneBorder rounded-[44px] p-2.5 shadow-2xl border-4 border-slate-700/80 relative">
             <div class="w-full h-[520px] bg-black rounded-[36px] overflow-hidden relative flex flex-col items-center">
 
-              <!-- Phone Top Status Bar -->
               <div
                 class="absolute top-0 left-0 right-0 flex justify-between items-center text-[10px] text-white px-6 pt-3 z-30 pointer-events-none">
                 <span class="font-semibold">9:41</span>
@@ -1145,7 +1090,7 @@
                 </div>
               </div>
 
-              <!-- Focus Area -->
+              <!-- Main TikTok Embed -->
               <div class="w-full h-full flex justify-center items-start overflow-hidden bg-black">
                 <div class="-mt-12 w-full flex justify-center scale-[0.96]">
                   <blockquote class="tiktok-embed"
@@ -1160,7 +1105,6 @@
                 </div>
               </div>
 
-              <!-- Home Bar Indicator -->
               <div class="absolute bottom-1.5 left-0 right-0 py-1 flex justify-center z-30 pointer-events-none">
                 <div class="w-24 h-1 bg-white/40 rounded-full"></div>
               </div>
@@ -1168,10 +1112,9 @@
             </div>
           </div>
         </div>
-
       </div>
 
-      <!-- Row 2: วิดีโอย่อย 3 คลิป (คืนค่าแสงธรรมชาติแบบเดิม) -->
+      <!-- Row 2: เปลี่ยนเป็น Interactive Thumbnail Cards แก้บั๊ก Overload และโหลดเร็วทันที -->
       <div class="pt-8 border-t border-white/10 space-y-4">
         <div class="flex items-center justify-between">
           <h4 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
@@ -1183,62 +1126,77 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
 
-          <!-- Sub Video 1 -->
-          <div
-            class="w-full max-w-[320px] mx-auto aspect-[9/16] bg-white/5 p-1 sm:p-1 rounded-[36px] border border-white/10 flex flex-col shadow-lg">
-            <div class="w-full h-full rounded-[28px] overflow-hidden bg-black flex justify-center items-start relative">
-              <div class="w-full scale-[0.98] origin-top -mt-2">
-                <blockquote class="tiktok-embed"
-                  cite="https://www.tiktok.com/@ceotony.bigdogcafe/video/7610673420828773650"
-                  data-video-id="7610673420828773650" style="max-width: 100%; margin: 0 auto;">
-                  <section>
-                    <a target="_blank" title="@ceotony.bigdogcafe"
-                      href="https://www.tiktok.com/@ceotony.bigdogcafe?refer=embed">@ceotony.bigdogcafe</a>
-                  </section>
-                </blockquote>
-              </div>
+          <!-- Sub Video Card 1 -->
+          <a href="https://www.tiktok.com/@ceotony.bigdogcafe/video/7610673420828773650" target="_blank"
+            rel="noopener noreferrer"
+            class="group w-full max-w-[320px] mx-auto aspect-[9/16] bg-slate-900 rounded-[32px] border border-white/15 overflow-hidden flex flex-col justify-between p-4 relative shadow-lg hover:border-teal-400 transition-all duration-300">
+            <div class="flex justify-between items-center text-xs text-slate-400 z-10">
+              <span class="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-teal-300 font-semibold text-[10px]">TikTok Short</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400 group-hover:text-teal-300 transition"></i>
             </div>
-          </div>
+            
+            <div class="my-auto flex flex-col items-center justify-center gap-3 text-center z-10">
+              <div class="w-14 h-14 rounded-full bg-tealDark/80 group-hover:bg-teal-500 text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition duration-300">
+                <i data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
+              </div>
+              <p class="text-xs font-semibold text-white px-2">โมเมนต์น้องหมาแสนรู้ Big Dog Cafe</p>
+            </div>
 
-          <!-- Sub Video 2 -->
-          <div
-            class="w-full max-w-[320px] mx-auto aspect-[9/16] bg-white/5 p-1 sm:p-1 rounded-[36px] border border-white/10 flex flex-col shadow-lg">
-            <div class="w-full h-full rounded-[28px] overflow-hidden bg-black flex justify-center items-start relative">
-              <div class="w-full scale-[0.98] origin-top -mt-2">
-                <blockquote class="tiktok-embed"
-                  cite="https://www.tiktok.com/@ceotony.bigdogcafe/video/7636682575955643656"
-                  data-video-id="7636682575955643656" style="max-width: 100%; margin: 0 auto;">
-                  <section>
-                    <a target="_blank" title="@ceotony.bigdogcafe"
-                      href="https://www.tiktok.com/@ceotony.bigdogcafe?refer=embed">@ceotony.bigdogcafe</a>
-                  </section>
-                </blockquote>
-              </div>
+            <div class="text-[11px] text-teal-200/80 font-medium text-center z-10">
+              คลิกเพื่อเปิดดูบน TikTok
             </div>
-          </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 group-hover:scale-105 transition-transform duration-500"></div>
+          </a>
 
-          <!-- Sub Video 3 -->
-          <div
-            class="w-full max-w-[320px] mx-auto aspect-[9/16] bg-white/5 p-1 sm:p-1 rounded-[36px] border border-white/10 flex flex-col shadow-lg">
-            <div class="w-full h-full rounded-[28px] overflow-hidden bg-black flex justify-center items-start relative">
-              <div class="w-full scale-[0.98] origin-top -mt-2">
-                <blockquote class="tiktok-embed"
-                  cite="https://www.tiktok.com/@ceotony.bigdogcafe/video/7603706407677922578"
-                  data-video-id="7603706407677922578" style="max-width: 100%; margin: 0 auto;">
-                  <section>
-                    <a target="_blank" title="@ceotony.bigdogcafe"
-                      href="https://www.tiktok.com/@ceotony.bigdogcafe?refer=embed">@ceotony.bigdogcafe</a>
-                  </section>
-                </blockquote>
-              </div>
+          <!-- Sub Video Card 2 -->
+          <a href="https://www.tiktok.com/@ceotony.bigdogcafe/video/7636682575955643656" target="_blank"
+            rel="noopener noreferrer"
+            class="group w-full max-w-[320px] mx-auto aspect-[9/16] bg-slate-900 rounded-[32px] border border-white/15 overflow-hidden flex flex-col justify-between p-4 relative shadow-lg hover:border-teal-400 transition-all duration-300">
+            <div class="flex justify-between items-center text-xs text-slate-400 z-10">
+              <span class="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-teal-300 font-semibold text-[10px]">TikTok Short</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400 group-hover:text-teal-300 transition"></i>
             </div>
-          </div>
+            
+            <div class="my-auto flex flex-col items-center justify-center gap-3 text-center z-10">
+              <div class="w-14 h-14 rounded-full bg-tealDark/80 group-hover:bg-teal-500 text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition duration-300">
+                <i data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
+              </div>
+              <p class="text-xs font-semibold text-white px-2">เบื้องหลังและการฝึกสัตว์เลี้ยงน่ารัก</p>
+            </div>
+
+            <div class="text-[11px] text-teal-200/80 font-medium text-center z-10">
+              คลิกเพื่อเปิดดูบน TikTok
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 group-hover:scale-105 transition-transform duration-500"></div>
+          </a>
+
+          <!-- Sub Video Card 3 -->
+          <a href="https://www.tiktok.com/@ceotony.bigdogcafe/video/7603706407677922578" target="_blank"
+            rel="noopener noreferrer"
+            class="group w-full max-w-[320px] mx-auto aspect-[9/16] bg-slate-900 rounded-[32px] border border-white/15 overflow-hidden flex flex-col justify-between p-4 relative shadow-lg hover:border-teal-400 transition-all duration-300">
+            <div class="flex justify-between items-center text-xs text-slate-400 z-10">
+              <span class="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-teal-300 font-semibold text-[10px]">TikTok Short</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400 group-hover:text-teal-300 transition"></i>
+            </div>
+            
+            <div class="my-auto flex flex-col items-center justify-center gap-3 text-center z-10">
+              <div class="w-14 h-14 rounded-full bg-tealDark/80 group-hover:bg-teal-500 text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition duration-300">
+                <i data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
+              </div>
+              <p class="text-xs font-semibold text-white px-2">คอนเทนต์ไวรัลแก๊งสุนัขตัวโต</p>
+            </div>
+
+            <div class="text-[11px] text-teal-200/80 font-medium text-center z-10">
+              คลิกเพื่อเปิดดูบน TikTok
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 group-hover:scale-105 transition-transform duration-500"></div>
+          </a>
 
         </div>
       </div>
 
     </div>
-    <!-- วางไว้ส่วนท้ายของ Section ในธีมมืด -->
+
     <div class="mt-12 flex justify-center">
       <a href="https://www.tiktok.com/@ceotony.bigdogcafe?_r=1&_t=ZS-99YKc8EMTWj"
         class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs sm:text-sm font-bold border border-teal-400/30 hover:border-teal-300 shadow-[0_0_20px_rgba(20,184,166,0.15)] hover:shadow-[0_0_25px_rgba(20,184,166,0.35)] backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5 group">
@@ -1257,7 +1215,6 @@
   <section id="drive-videos" class="py-20 bg-white text-slate-800 border-y border-slate-200/80">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
 
-      <!-- Section Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
         <div>
           <span
@@ -1277,7 +1234,7 @@
         </span>
       </div>
 
-      <!-- 1. วิดีโอหลักแนวนอน (16:9 Landscape) -->
+      <!-- Landscape Video -->
       <div class="space-y-3">
         <div class="flex items-center gap-2 text-xs font-bold text-tealDark">
           <i data-lucide="monitor" class="w-4 h-4"></i>
@@ -1310,7 +1267,7 @@
         </div>
       </div>
 
-      <!-- 2. วิดีโอรองแนวตั้ง 4 รายการ (ปรับ UI ปุ่มให้เล็กลง และจัดกึ่งกลางพอดีกรอบ) -->
+      <!-- Vertical Videos 4 items -->
       <div class="space-y-4 pt-4 border-t border-slate-200">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2 text-xs font-bold text-tealDark">
@@ -1322,7 +1279,6 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-          <!-- Vertical Video 1 -->
           <div
             class="bg-[#f8f9fa] p-0 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:border-tealDark/50 hover:shadow-md transition duration-300">
             <div>
@@ -1345,7 +1301,6 @@
             </div>
           </div>
 
-          <!-- Vertical Video 2 -->
           <div
             class="bg-[#f8f9fa] p-0 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:border-tealDark/50 hover:shadow-md transition duration-300">
             <div>
@@ -1368,7 +1323,6 @@
             </div>
           </div>
 
-          <!-- Vertical Video 3 -->
           <div
             class="bg-[#f8f9fa] p-0 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:border-tealDark/50 hover:shadow-md transition duration-300">
             <div>
@@ -1391,7 +1345,6 @@
             </div>
           </div>
 
-          <!-- Vertical Video 4 -->
           <div
             class="bg-[#f8f9fa] p-0 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:border-tealDark/50 hover:shadow-md transition duration-300">
             <div>
@@ -1418,7 +1371,7 @@
       </div>
 
     </div>
-    <!-- วางไว้ส่วนท้ายของ Section ในธีมสว่าง -->
+
     <div class="mt-12 flex justify-center">
       <a href="https://drive.google.com/drive/folders/1sBTKZgNn2zCAqgNLckaT7AFebgM7NLjr"
         class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-tealSoft hover:bg-teal-100 text-tealDark text-xs sm:text-sm font-bold border border-teal-200/80 hover:border-teal-300 shadow-xs hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 group">
@@ -1430,7 +1383,7 @@
     </div>
   </section>
 
-  <!-- ==================== SECTION 7: 06 PRODUCT & PACKAGING DESIGN (PDF หน้า 7) ==================== -->
+  <!-- ==================== SECTION 7: 06 PRODUCT & PACKAGING DESIGN ==================== -->
   <section id="product-design" class="py-20 px-4 sm:px-6 max-w-5xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
       <div>
@@ -1444,10 +1397,7 @@
     </div>
 
     <div class="space-y-8">
-
-      <!-- ส่วนที่ 1: ภาพบน + รายละเอียดคอนเซปต์แบรนด์ AURAÉ -->
       <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm space-y-6">
-        <!-- ปลดล็อก aspect-ratio เพื่อให้ภาพกว้างเต็มและสูงตามขนาดจริงโดยไม่ถูกย่อ -->
         <div class="w-full rounded-2xl overflow-hidden bg-rose-50/40 border border-slate-100 relative">
           <img src="image/f/1.png" alt="AURAÉ Brand Identity" class="w-full h-auto block object-cover" />
           <div
@@ -1464,8 +1414,7 @@
             AURAÉ — "Elevate Your Glow, Embrace the Aura"
           </h3>
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            งานออกแบบอัตลักษณ์ตราสินค้า (Brand Identity) สกินแคร์บำรุงผิว เน้นความอ่อนโยน ผสานคุณค่าจากธรรมชาติ
-            เพื่อผิวแลดูสุขภาพดี (Healthy Aura)
+            งานออกแบบอัตลักษณ์ตราสินค้า (Brand Identity) สกินแคร์บำรุงผิว เน้นความอ่อนโยน ผสานคุณค่าจากธรรมชาติ เพื่อผิวแลดูสุขภาพดี (Healthy Aura)
           </p>
         </div>
 
@@ -1477,9 +1426,7 @@
         </div>
       </div>
 
-      <!-- ส่วนที่ 2: ภาพล่าง + รายละเอียดบรรจุภัณฑ์ LushGlow -->
       <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm space-y-6">
-        <!-- ปลดล็อก aspect-ratio เพื่อให้ภาพกว้างเต็มและสูงตามขนาดจริงโดยไม่ถูกย่อ -->
         <div class="w-full rounded-2xl overflow-hidden bg-rose-50/40 border border-slate-100 relative">
           <img src="image/f/2.png" alt="LushGlow Face Wash" class="w-full h-auto block object-cover" />
           <div
@@ -1507,18 +1454,16 @@
           </p>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ==================== SECTION 8: 07 EVENT PHOTOGRAPHY (PDF หน้า 8) ==================== -->
+  <!-- ==================== SECTION 8: 07 EVENT PHOTOGRAPHY ==================== -->
   <section id="events" class="py-20 bg-white border-y border-slate-200/80">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
         <div>
           <span class="text-tealDark font-extrabold text-xs uppercase tracking-wider">Project 07</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Event Photography & Community Coverage
-          </h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Event Photography & Community Coverage</h2>
           <p class="text-xs sm:text-sm text-slate-600 mt-1">
             "ผลงานถ่ายภาพตามงานอีเว้นท์ต่างๆ พร้อมนำไปใช้สำหรับทำสื่อโซเชียล" (BKK DOG SCTY, Spike, Pet Gatherings)
           </p>
@@ -1544,20 +1489,18 @@
           </div>
         </div>
 
-        <!-- ภาพที่ 2: Brand Event Coverage (Spike) -->
+        <!-- ภาพที่ 2: Outdoor Workshop & Activities -->
         <div
           class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
           <div>
             <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
-              <img src="image/g/2.png" alt="Brand Event Coverage" class="w-full h-full object-cover" />
+              <img src="image/g/2.png" alt="Outdoor Workshop & Activities" class="w-full h-full object-cover" />
             </div>
             <div class="p-4">
               <h4 class="font-bold text-sm text-slate-900">Outdoor Workshop & Activities</h4>
-
               <p class="text-[11px] text-slate-500 mt-1">
                 บันทึกภาพกิจกรรมเวิร์กช็อประหว่างเจ้าของและสัตว์เลี้ยงเพื่อใช้ทำ Content Recap
               </p>
-
             </div>
           </div>
         </div>
@@ -1578,16 +1521,15 @@
           </div>
         </div>
 
-        <!-- ภาพที่ 4: BKK DOG SCTY Showcase -->
+        <!-- ภาพที่ 4: Brand Event Coverage (Spike) -->
         <div
           class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
           <div>
             <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
-              <img src="image/g/4.png" alt="BKK DOG SCTY" class="w-full h-full object-cover" />
+              <img src="image/g/4.png" alt="Brand Event Coverage" class="w-full h-full object-cover" />
             </div>
             <div class="p-4">
               <h4 class="font-bold text-sm text-slate-900">Brand Event Coverage (Spike)</h4>
-
               <p class="text-[11px] text-slate-500 mt-1">
                 ถ่ายภาพเวที กิจกรรมแจกของรางวัล และการมีส่วนร่วมของลูกค้ากับแบรนด์
               </p>
@@ -1595,20 +1537,18 @@
           </div>
         </div>
 
-        <!-- ภาพที่ 5: Pet Outdoor Activity -->
+        <!-- ภาพที่ 5: BKK DOG SCTY Installation -->
         <div
           class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
           <div>
             <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
-              <img src="image/g/5.png" alt="Pet Outdoor Activity" class="w-full h-full object-cover" />
+              <img src="image/g/5.png" alt="BKK DOG SCTY" class="w-full h-full object-cover" />
             </div>
             <div class="p-4">
               <h4 class="font-bold text-sm text-slate-900">BKK DOG SCTY Installation</h4>
-
               <p class="text-[11px] text-slate-500 mt-1">
                 ถ่ายภาพจุดเช็กอินและพร็อพตกแต่งสถานที่ ช่วยเพิ่มการรับรู้แบรนด์บนโซเชียล
               </p>
-
             </div>
           </div>
         </div>
@@ -1631,6 +1571,7 @@
 
       </div>
     </div>
+
     <div class="mt-12 flex justify-center">
       <a href="https://drive.google.com/drive/folders/12lv_aR3xY5-LZeemXwmIh82VNv-qQM__"
         class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 hover:bg-tealDark text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg shadow-slate-900/10 hover:shadow-teal-900/20 transition-all duration-300 transform hover:-translate-y-0.5 group">
@@ -1675,7 +1616,7 @@
 
       <div class="text-[11px] text-slate-400 space-y-1">
         <p>Bangkok, Thailand (10310) • Bachelor of Communication Arts, Rangsit University</p>
-        <p class="text-slate-500">Portfolio Website Designed by Auamdow Phapolmon</p>
+        <p class="text-slate-500">Portfolio Website Designed for Auamdow Phapolmon</p>
       </div>
     </div>
   </footer>
