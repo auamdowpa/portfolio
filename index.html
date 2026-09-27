@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auamdow Phapolmon - Portfolio</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Dancing Script สำหรับตัวเขียน & Plus Jakarta Sans / Prompt สำหรับเนื้อหา -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            tealDark: '#1e4d58',
+            tealAccent: '#235865',
+            tealSoft: '#eaf4f4',
+            phoneBorder: '#1c1d22',
+          },
+          fontFamily: {
+            script: ['"Dancing Script"', 'cursive'],
+            sans: ['"Plus Jakarta Sans"', '"Prompt"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[#f8f9fa] text-slate-800 font-sans min-h-screen select-none overflow-x-hidden">
+
+  <!-- ==================== SECTION 1: HERO COMPOSITION WORKSPACE (LAYOUT เดิม) ==================== -->
+  <div class="min-h-screen flex flex-col items-center justify-between p-3 sm:p-8 pb-16">
+
+    <!-- Top Navbar (Responsive: Desktop Floating Capsule / Mobile Hamburger + ScrollSpy Active) -->
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-3 pb-2 pointer-events-none">
+      <div class="max-w-5xl mx-auto flex items-center justify-between sm:justify-center relative">
+
+        <!-- Mobile Brand / Logo -->
+        <a href="#hero"
+          class="pointer-events-auto sm:hidden bg-white/90 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200/80 shadow-md text-xs font-extrabold text-slate-900 tracking-tight flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-tealDark"></span>
+          Portfolio
+        </a>
+
+        <!-- Desktop Navbar Capsule -->
+        <div
+          class="hidden sm:block pointer-events-auto bg-white/90 backdrop-blur-md px-6 py-2.5 rounded-full border border-slate-200/80 shadow-md">
+          <nav id="desktop-nav"
+            class="flex items-center gap-5 text-xs sm:text-sm font-semibold tracking-wide text-slate-600">
+            <a href="#hero" class="nav-link transition duration-200 text-slate-600 hover:text-tealDark">Home</a>
+            <a href="#about-me" class="nav-link transition duration-200 text-slate-600 hover:text-tealDark">About Me</a>
+
+            <!-- Work Showcase Links -->
+            <div class="flex items-center gap-5 border-l-2 border-tealDark/40 pl-5">
+              <a href="#menu-design"
+                class="nav-link transition duration-200 text-tealDark/80 hover:text-tealDark">Graphic</a>
+              <a href="#digital-ads"
+                class="nav-link transition duration-200 text-tealDark/80 hover:text-tealDark">Ads</a>
+              <a href="#photo-caption"
+                class="nav-link transition duration-200 text-tealDark/80 hover:text-tealDark">Photo</a>
+              <a href="#video-content"
+                class="nav-link transition duration-200 text-tealDark/80 hover:text-tealDark">Video</a>
+              <a href="#product-design"
+                class="nav-link transition duration-200 text-tealDark/80 hover:text-tealDark">Product</a>
+              <a href="#events" class="nav-link transition duration-200 text-tealDark/80 hover:text-tealDark">Events</a>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation"
+          class="pointer-events-auto sm:hidden w-10 h-10 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-md flex items-center justify-center text-slate-800 hover:text-tealDark transition">
+          <i id="menu-icon" data-lucide="menu" class="w-5 h-5"></i>
+          <i id="close-icon" data-lucide="x" class="w-5 h-5 hidden"></i>
+        </button>
+
+        <!-- Mobile Dropdown Menu Card -->
+        <div id="mobile-menu"
+          class="pointer-events-auto hidden sm:hidden absolute top-14 right-0 w-60 bg-white/95 backdrop-blur-lg rounded-3xl border border-slate-200 shadow-xl p-4 transition-all duration-200 transform origin-top-right">
+          <nav id="mobile-nav" class="flex flex-col space-y-1 text-sm font-semibold text-slate-700">
+            <a href="#hero" onclick="closeMobileMenu()" class="mobile-nav-link px-3 py-2 rounded-xl transition">Home</a>
+            <a href="#about-me" onclick="closeMobileMenu()"
+              class="mobile-nav-link px-3 py-2 rounded-xl transition">About Me</a>
+
+            <div class="pt-2 mt-1 border-t border-slate-100 space-y-1">
+              <span class="px-3 text-[10px] uppercase font-bold text-slate-400 tracking-wider">Showcase</span>
+              <a href="#menu-design" onclick="closeMobileMenu()"
+                class="mobile-nav-link block px-3 py-1.5 rounded-xl transition">Graphic Design</a>
+              <a href="#digital-ads" onclick="closeMobileMenu()"
+                class="mobile-nav-link block px-3 py-1.5 rounded-xl transition">Ads & Promo</a>
+              <a href="#photo-caption" onclick="closeMobileMenu()"
+                class="mobile-nav-link block px-3 py-1.5 rounded-xl transition">Photography</a>
+              <a href="#video-content" onclick="closeMobileMenu()"
+                class="mobile-nav-link block px-3 py-1.5 rounded-xl transition">Video Content</a>
+              <a href="#product-design" onclick="closeMobileMenu()"
+                class="mobile-nav-link block px-3 py-1.5 rounded-xl transition">Product Design</a>
+              <a href="#events" onclick="closeMobileMenu()"
+                class="mobile-nav-link block px-3 py-1.5 rounded-xl transition">Events & Exhibition</a>
+            </div>
+          </nav>
+        </div>
+
+      </div>
+    </header>
+
+    <script>
+      // ฟังก์ชันเปิด-ปิดเมนูบนมือถือ
+      function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const isOpen = !menu.classList.contains('hidden');
+
+        menu.classList.toggle('hidden', isOpen);
+        menuIcon.classList.toggle('hidden', !isOpen);
+        closeIcon.classList.toggle('hidden', isOpen);
+      }
+
+      function closeMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (menu) {
+          menu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      }
+
+      // ระบบ ScrollSpy + ล็อก Home เมื่ออยู่บนสุดหรือตอนเริ่ม
+      document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const desktopLinks = document.querySelectorAll('#desktop-nav .nav-link');
+        const mobileLinks = document.querySelectorAll('#mobile-nav .mobile-nav-link');
+
+        // คลาสตกแต่งสถานะ Active
+        const desktopActiveClass = ['text-slate-900', 'font-bold', 'border-b-2', 'border-tealDark', 'pb-0.5'];
+        const mobileActiveClass = ['bg-teal-50', 'text-tealDark', 'font-bold'];
+
+        // ฟังก์ชันสั่งสลับคลาส Active ไปยัง targetId
+        function setActiveLink(targetId) {
+          desktopLinks.forEach(link => {
+            const isMatch = link.getAttribute('href') === targetId;
+            if (isMatch) {
+              link.classList.add(...desktopActiveClass);
+            } else {
+              link.classList.remove(...desktopActiveClass);
+            }
+          });
+
+          mobileLinks.forEach(link => {
+            const isMatch = link.getAttribute('href') === targetId;
+            if (isMatch) {
+              link.classList.add(...mobileActiveClass);
+            } else {
+              link.classList.remove(...mobileActiveClass);
+            }
+          });
+        }
+
+        // 1. ตั้งค่าเริ่มต้นตอนเริ่มหน้าเว็บ: เช็กตำแหน่ง scroll ปัจจุบัน
+        if (window.scrollY < 120) {
+          setActiveLink('#hero');
+        }
+
+        // 2. ตรวจสอบตอนเลื่อนจอ: ถ้ากลับขึ้นมาบนสุดให้บังคับเป็น #hero ทันที
+        window.addEventListener('scroll', () => {
+          if (window.scrollY < 120) {
+            setActiveLink('#hero');
+          }
+        }, {
+          passive: true
+        });
+
+        // 3. Intersection Observer: ตรวจจับแต่ละ Section เมื่อเลื่อนผ่าน
+        const observer = new IntersectionObserver((entries) => {
+          // ถ้าอยู่บนสุดให้ scroll event จัดการเป็น Home ต่อไป ไม่ต้องแย่ง active
+          if (window.scrollY < 120) return;
+
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const currentId = `#${entry.target.getAttribute('id')}`;
+              setActiveLink(currentId);
+            }
+          });
+        }, {
+          rootMargin: '-25% 0px -45% 0px' // โฟกัสช่วงกลางจอ
+        });
+
+        sections.forEach(section => observer.observe(section));
+      });
+    </script>
+
+    <!-- Main Composition Workspace -->
+    <main id="hero"
+      class="w-full max-w-5xl my-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0 lg:relative lg:h-[780px] py-4 lg:py-0">
+
+      <!-- Left Floating Sidebar Bar (Vertical PORTFOLIO Text with Icon) -->
+      <div class="lg:absolute lg:left-4 lg:top-[70px] z-20 flex flex-row lg:flex-col items-center gap-4 lg:gap-6">
+        <div
+          class="bg-tealDark text-white px-5 py-2.5 lg:py-7 lg:px-0 lg:w-10 rounded-full flex flex-row lg:flex-col items-center justify-center gap-2 shadow-md">
+          <!-- ไอคอนหน้าข้อความ -->
+          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-teal-200 shrink-0"></i>
+
+          <!-- ข้อความแนวตั้ง -->
+          <span
+            class="text-[11px] font-black tracking-[0.35em] uppercase select-none lg:[writing-mode:vertical-rl] lg:rotate-180 text-teal-100">
+            WELCOME !!
+          </span>
+        </div>
+        <div class="hidden lg:block w-[2px] h-24 bg-tealDark/70 rounded-full"></div>
+      </div>
+
+      <!-- Center Card: Main Poster with Overlay Signature (Bleeding Outside Frame) -->
+      <div
+        class="relative w-[90vw] max-w-[340px] sm:max-w-[420px] lg:w-[460px] h-[480px] sm:h-[580px] lg:h-[640px] shrink-0 flex items-center justify-center">
+
+        <!-- รูปภาพพร้อมขอบมน -->
+        <div
+          class="w-full h-full rounded-[32px] sm:rounded-[40px] overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
+          <img src="a1.png" alt="Auamdow Phapolmon" class="w-full h-full object-cover object-center" />
+        </div>
+
+        <!-- ข้อความลายเซ็น: ขยายขนาดใหญ่ขึ้น ชัดเจน ล้นออกมานอกกรอบพอดีตา -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none pb-8 z-10">
+          <span
+            class="font-script text-white text-7xl sm:text-9xl lg:text-[10.5rem] drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)] select-none whitespace-nowrap -mx-8 sm:-mx-14 lg:-mx-20">
+            Portfolio
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Center Bottom: Pop-up Scroll Card with Pill Buttons -->
+      <div
+        class="lg:absolute lg:bottom-2 lg:left-1/2 lg:-translate-x-1/2 z-30 flex flex-col items-center w-full max-w-[290px] sm:max-w-xs">
+        <button
+          class="w-9 h-9 rounded-full bg-tealDark text-white flex items-center justify-center -mb-4 z-40 shadow-lg border-2 border-white hover:scale-105 transition">
+          <i data-lucide="chevron-up" class="w-5 h-5"></i>
+        </button>
+
+        <div
+          class="bg-white/95 backdrop-blur-md w-full p-5 sm:p-6 rounded-3xl shadow-2xl border border-slate-100 text-center flex flex-col items-center">
+          <h3 class="font-script text-3xl sm:text-4xl text-slate-800 leading-tight mb-2">
+            Auamdow<br /><span class="text-xl sm:text-2xl font-normal text-slate-700">Phapolmon</span>
+          </h3>
+          <p class="text-[11px] leading-relaxed text-slate-600 mb-2">
+            Digital Marketing professional with 1 year of experience in social media, content creation, and marketing
+            ideas that drive brand awareness, engagement, and sales.
+          </p>
+          <p class="text-[10px] text-slate-400 italic">
+            Rangsit University • Bachelor's GPA 3.91
+          </p>
+        </div>
+
+        <a href="#about-me"
+          class="w-9 h-9 rounded-full bg-tealDark text-white flex items-center justify-center -mt-4 z-40 shadow-lg border-2 border-white hover:scale-105 transition">
+          <i data-lucide="chevron-down" class="w-5 h-5"></i>
+        </a>
+      </div>
+
+      <!-- Bottom Left: Floating Info Card & Strip -->
+      <div class="lg:absolute lg:left-6 lg:bottom-16 z-20 flex flex-col items-center sm:items-start gap-2">
+        <div class="bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-slate-100 w-52 flex flex-col">
+          <div class="flex items-center gap-2 mb-1">
+            <img src="a3.png" class="w-9 h-9 rounded-full object-cover border border-slate-200" />
+            <div>
+              <h4 class="font-bold text-xs leading-tight text-slate-800">Specialization</h4>
+              <span class="text-[9px] text-slate-400">Digital Marketing</span>
+            </div>
+            <i data-lucide="award" class="w-3.5 h-3.5 ml-auto text-amber-500"></i>
+          </div>
+          <p class="text-[10px] text-slate-500 leading-tight mt-1">
+            Digital Advertising 95%, Social Media 90%, Public Speaking 90%
+          </p>
+        </div>
+
+        <div class="w-52 h-16 rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+          <img src="a2.png" class="w-full h-full object-cover object-center" />
+        </div>
+      </div>
+
+      <!-- Right: Smartphone Music Player Mockup -->
+      <div class="lg:absolute lg:-right-4 sm:lg:right-6 lg:top-1/2 lg:-translate-y-1/2 z-30 flex flex-col items-center">
+        <!-- จัดวางกึ่งกลาง outer frame ของสมาร์ตโฟน -->
+        <span class="text-[11px] font-semibold text-slate-700 text-center w-full mb-1">Now Playing • Chill
+          Vibes</span>
+
+        <!-- iPhone Outer Frame -->
+        <div
+          class="w-[210px] sm:w-[225px] h-[360px] bg-phoneBorder rounded-[40px] p-2.5 shadow-2xl border-4 border-slate-700/80 relative">
+          <div
+            class="w-full h-full bg-slate-950 rounded-[32px] overflow-hidden relative flex flex-col justify-between p-3 text-white">
+
+            <!-- Cozy Cafe / Chill Background Wallpaper -->
+            <div class="absolute inset-0 -z-10 opacity-35">
+              <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=500&auto=format&fit=crop"
+                class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Phone Top Status Bar -->
+            <div class="flex justify-center items-center pt-1 z-10">
+              <div class="w-16 h-3 bg-phoneBorder rounded-full flex items-center justify-end px-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
+              </div>
+            </div>
+
+            <!-- Music Notification Pill -->
+            <div
+              class="bg-black/45 backdrop-blur-md rounded-xl p-2 flex items-center gap-2 border border-white/10 my-auto text-[10px]">
+              <div class="p-1 bg-teal-500/20 text-teal-300 rounded-md">
+                <i data-lucide="music-2" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="flex flex-col truncate">
+                <span class="text-slate-200 font-medium truncate">Cafe Acoustic Sessions</span>
+                <span class="text-[8px] text-teal-300">Now Playing</span>
+              </div>
+              <!-- Animated Equalizer Bars -->
+              <div class="flex items-end gap-0.5 h-3 ml-auto shrink-0 pr-1">
+                <span class="w-0.5 h-2.5 bg-teal-400 rounded-full animate-pulse"></span>
+                <span class="w-0.5 h-3.5 bg-teal-300 rounded-full animate-pulse" style="animation-delay: 150ms"></span>
+                <span class="w-0.5 h-1.5 bg-teal-400 rounded-full animate-pulse" style="animation-delay: 300ms"></span>
+              </div>
+            </div>
+
+            <!-- Bottom Interactive Music Player Widget -->
+            <div
+              class="bg-white/95 text-slate-900 rounded-2xl p-2.5 shadow-xl backdrop-blur-md flex flex-col items-center">
+              <div
+                class="w-14 h-14 rounded-xl overflow-hidden shadow-md -mt-6 mb-1.5 border-2 border-white bg-slate-900 relative group shrink-0">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=200&auto=format&fit=crop"
+                  class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <span class="w-2.5 h-2.5 rounded-full bg-white/90 border border-slate-300"></span>
+                </div>
+              </div>
+
+              <div class="font-script text-base leading-tight text-center text-slate-900">Afternoon Coffee & Dogs
+              </div>
+              <div class="text-[9px] text-slate-500 font-sans tracking-tight mb-2">Lofi Beats • Chill Acoustic</div>
+
+              <!-- Audio Progress Bar -->
+              <div class="w-full mb-2 px-1">
+                <div class="w-full bg-slate-200 h-1 rounded-full relative flex items-center">
+                  <div id="player-progress" class="bg-tealDark w-2/5 h-full rounded-full transition-all duration-300">
+                  </div>
+                  <div class="w-2 h-2 bg-tealDark rounded-full shadow -ml-0.5"></div>
+                </div>
+              </div>
+
+              <!-- Player Controls -->
+              <div class="flex items-center justify-between w-full px-2 text-slate-700">
+                <button type="button" class="hover:text-tealDark transition">
+                  <i data-lucide="shuffle" class="w-3 h-3 text-slate-400"></i>
+                </button>
+                <button type="button" class="hover:text-tealDark transition">
+                  <i data-lucide="skip-back" class="w-3.5 h-3.5 fill-current"></i>
+                </button>
+
+                <!-- Play / Pause Button with Toggle Script -->
+                <button id="chill-play-btn" type="button"
+                  class="w-7 h-7 rounded-full bg-tealDark hover:bg-tealAccent text-white flex items-center justify-center shadow-md transition transform active:scale-95"
+                  onclick="toggleChillAudio()">
+                  <i id="chill-play-icon" data-lucide="play" class="w-3.5 h-3.5 fill-current ml-0.5"></i>
+                </button>
+
+                <button type="button" class="hover:text-tealDark transition">
+                  <i data-lucide="skip-forward" class="w-3.5 h-3.5 fill-current"></i>
+                </button>
+                <button type="button" class="hover:text-tealDark transition">
+                  <i data-lucide="repeat" class="w-3.5 h-3.5 text-slate-400"></i>
+                </button>
+              </div>
+
+              <!-- Hidden Audio Element -->
+              <audio id="chill-audio" loop
+                src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Audio Toggle Script -->
+      <script>
+        function toggleChillAudio() {
+          const audio = document.getElementById('chill-audio');
+          const playBtn = document.getElementById('chill-play-btn');
+
+          if (!audio) return;
+
+          if (audio.paused) {
+            audio.play().then(() => {
+              playBtn.innerHTML = '<i data-lucide="pause" class="w-3.5 h-3.5 fill-current"></i>';
+              lucide.createIcons();
+            }).catch(err => {
+              console.warn('Audio play restricted by browser policy:', err);
+            });
+          } else {
+            audio.pause();
+            playBtn.innerHTML = '<i data-lucide="play" class="w-3.5 h-3.5 fill-current ml-0.5"></i>';
+            lucide.createIcons();
+          }
+        }
+
+        const chillAudio = document.getElementById('chill-audio');
+        if (chillAudio) {
+          chillAudio.addEventListener('timeupdate', () => {
+            const progress = document.getElementById('player-progress');
+            if (progress && chillAudio.duration) {
+              const percent = (chillAudio.currentTime / chillAudio.duration) * 100;
+              progress.style.width = percent + '%';
+            }
+          });
+        }
+      </script>
+
+    </main>
+
+    <!-- Bottom Social Footer Dock -->
+    <footer class="flex flex-col items-center gap-2 mt-4 z-20">
+      <div class="bg-tealDark text-white px-7 py-2.5 rounded-full flex items-center gap-6 shadow-md">
+        <a href="tel:0827829949" class="hover:text-teal-200 transition"><i data-lucide="phone" class="w-4 h-4"></i></a>
+        <a href="mailto:auamdowpamonphon@gmail.com" class="hover:text-teal-200 transition"><i data-lucide="mail"
+            class="w-4 h-4"></i></a>
+        <a href="http://www.sidsuch.co" target="_blank" class="hover:text-teal-200 transition"><i data-lucide="globe"
+            class="w-4 h-4"></i></a>
+        <a href="#digital-ads" class="hover:text-teal-200 transition"><i data-lucide="layout" class="w-4 h-4"></i></a>
+        <a href="#events" class="hover:text-teal-200 transition"><i data-lucide="camera" class="w-4 h-4"></i></a>
+      </div>
+      <span class="text-[11px] text-slate-400 font-medium">082-7829949 • auamdowpamonphon@gmail.com •
+        www.sidsuch.co</span>
+    </footer>
+  </div>
+
+  <!-- ==================== NEW SECTION: ABOUT ME (เนื้อหาหน้า 1 และ 2 จาก PDF) ==================== -->
+  <section id="about-me" class="py-20 bg-gradient-to-b from-[#f8f9fa] to-white border-t border-slate-200/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-3">
+        <div>
+          <span
+            class="text-tealDark font-extrabold text-xs uppercase tracking-wider bg-tealSoft px-3 py-1 rounded-full border border-teal-200">
+            About Me & Qualifications
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 tracking-tight">
+            Hi, I'm <span class="text-tealDark">Auamdow Phapolmon</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1 font-medium">
+            Digital Marketing • Content Creator & Video Cutting • Graphic Design
+          </p>
+        </div>
+        <div
+          class="text-xs text-slate-500 font-medium flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-slate-200 shadow-xs self-start md:self-auto">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-tealDark"></i>
+          <span>Bangkok, Thailand (10310)</span>
+        </div>
+      </div>
+
+      <!-- Bio Quote Banner -->
+      <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-sm mb-10 relative overflow-hidden">
+        <div class="w-2 h-full bg-tealDark absolute left-0 top-0"></div>
+        <p class="text-slate-700 text-sm sm:text-base leading-relaxed italic pl-2">
+          "Creative, detail-oriented, responsible, and highly organized, with strong time management skills and a
+          passion for continuous learning. Digital Marketing professional with 1 year of experience in social media,
+          content creation, and marketing ideas that drive brand awareness, engagement, and sales."
+        </p>
+      </div>
+
+      <!-- Main 2-Column Grid: Education & Experience + Skills & Media -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Column: Education, Experience & Award -->
+        <div class="lg:col-span-7 space-y-6">
+
+          <!-- Experience Card -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm">
+            <div class="flex items-center gap-2.5 text-tealDark font-bold text-xs uppercase tracking-wider mb-2">
+              <div class="p-1.5 rounded-lg bg-tealSoft"><i data-lucide="briefcase" class="w-4 h-4"></i></div>
+              <span>Experience • 1 Year</span>
+            </div>
+            <div class="flex justify-between items-baseline flex-wrap gap-1">
+              <h3 class="text-base font-bold text-slate-900">Digital Marketing</h3>
+              <span class="text-xs font-semibold text-tealDark bg-teal-50 px-2 py-0.5 rounded-md">Big Dog Cafe</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">Dog Café, Food & Beverage, Pet Hotel, Dog Services</p>
+
+            <!-- 6 Bullet Points from PDF -->
+            <ul class="mt-4 space-y-2 text-xs text-slate-600 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-tealDark mt-1.5 shrink-0"></span>
+                <span>Created social media content to drive brand awareness, engagement, and follower growth.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-tealDark mt-1.5 shrink-0"></span>
+                <span>Managed end-to-end content production across Photo, Video, Graphic, Reels/TikTok, and Live.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-tealDark mt-1.5 shrink-0"></span>
+                <span>Planned and coordinated events for smooth execution and brand consistency.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-tealDark mt-1.5 shrink-0"></span>
+                <span>Managed Brand Identity and Art Direction to maintain a consistent brand image.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-tealDark mt-1.5 shrink-0"></span>
+                <span>Developed marketing strategies, campaigns, and promotions to support sales growth.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-tealDark mt-1.5 shrink-0"></span>
+                <span>Created new ideas for Workshops and Food & Beverage to enhance brand appeal.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Education Card -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm">
+            <div class="flex items-center gap-2.5 text-tealDark font-bold text-xs uppercase tracking-wider mb-2">
+              <div class="p-1.5 rounded-lg bg-tealSoft"><i data-lucide="graduation-cap" class="w-4 h-4"></i></div>
+              <span>Education</span>
+            </div>
+            <div class="flex justify-between items-baseline flex-wrap gap-1">
+              <h3 class="text-base font-bold text-slate-900">Rangsit University</h3>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md">GPA: 3.91</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-1">
+              Bachelor's degree in College of Communication Arts, Multimedia (2020 – 2023)
+            </p>
+          </div>
+
+          <!-- Award & Achievement Card -->
+          <div class="bg-amber-50/70 border border-amber-200/80 rounded-3xl p-5 shadow-xs flex items-start gap-3.5">
+            <div
+              class="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-bold text-base shrink-0 shadow-sm">
+              🏆
+            </div>
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-amber-800">Award & Achievement</h4>
+              <p class="text-xs font-semibold text-slate-900 mt-0.5">
+                Recognition Award for Creative Multimedia Project – "Grow up Can drive"
+              </p>
+              <p class="text-[11px] text-slate-600 mt-0.5">
+                Bachelor's Thesis, College of Communication Arts, Rangsit University (2023)
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Skills Breakdown & QR Interactive Box -->
+        <div class="lg:col-span-5 space-y-6">
+
+          <!-- Hard & Soft Skills Breakdown -->
+          <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+            <div class="flex items-center gap-2 text-tealDark font-bold text-xs uppercase tracking-wider">
+              <i data-lucide="sparkles" class="w-4 h-4 text-amber-500"></i>
+              <span>Hard & Soft Skills</span>
+            </div>
+
+            <div class="space-y-2.5 text-xs">
+              <div>
+                <div class="flex justify-between text-slate-700 font-semibold mb-1">
+                  <span>Digital Advertising</span><span class="text-tealDark font-bold">95%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-tealDark h-full w-[95%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 font-semibold mb-1">
+                  <span>Social Media Marketing</span><span class="text-tealDark font-bold">90%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-tealDark h-full w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 font-semibold mb-1">
+                  <span>Public Speaking</span><span class="text-tealDark font-bold">90%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-tealDark h-full w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 font-semibold mb-1">
+                  <span>Time Management</span><span class="text-tealDark font-bold">90%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-tealDark h-full w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 font-semibold mb-1">
+                  <span>Adaptability</span><span class="text-tealDark font-bold">90%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-tealDark h-full w-[90%]"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 font-semibold mb-1">
+                  <span>Content & Copywriting</span><span class="text-tealDark font-bold">85%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-tealDark h-full w-[85%]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Language &
+                Tools</span>
+              <div class="flex flex-wrap gap-1.5 text-[11px]">
+                <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg font-medium">Thai (Native)</span>
+                <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg font-medium">English
+                  (Intermediate)</span>
+                <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg font-medium">Canva</span>
+                <span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg font-medium">MS Office</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive QR / Media Note from PDF Page 2 -->
+          <div class="bg-[#1e4d58] text-white rounded-3xl p-6 shadow-md flex items-center gap-5">
+            <div class="w-20 h-20 bg-white p-2 rounded-2xl shrink-0 flex items-center justify-center shadow">
+              <!-- QR Code Mock Graphic -->
+              <svg viewBox="0 0 24 24" class="w-full h-full text-slate-900 fill-current" stroke="none">
+                <path
+                  d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 2h2v4h-2v-4zm-4-4h2v2h-2v-2zm4 0h4v2h-4v-2zm-4 4h2v4h-2v-4zm4 0h2v2h-2v-2zM5 5h2v2H5V5zm12 0h2v2h-2V5zM5 17h2v2H5v-2z" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-teal-200">Most Recommend</span>
+              <h4 class="text-sm font-bold mt-0.5">Explore Full Portfolio</h4>
+              <p class="text-[11px] text-teal-100 mt-1 leading-snug">
+                เข้าชมไฟล์ภาพฉบับเต็มและผลงานวิดีโอเพิ่มเติมได้ที่ลิงก์เว็บไซต์ด้านล่าง
+              </p>
+              <a href="http://www.sidsuch.co" target="_blank"
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full mt-2.5 transition">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                <span>www.sidsuch.co</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 2: TABLE OF CONTENTS (PDF หน้า 2) ==================== -->
+  <section id="toc" class="py-20 bg-white border-y border-slate-200/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-tealDark bg-teal-50 px-3 py-1 rounded-full">
+          Table of Content
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Portfolio Categories</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+          มีไฟล์ภาพและวิดีโอจำนวนมากที่สามารถเข้าดูผ่าน QR Code
+          หรือเลือกคลิกดูงานที่เกี่ยวข้องในแต่ละหมวดหมู่ด้านล่างได้เลยน้าา
+        </p>
+      </div>
+
+      <!-- ปรับรองรับ 6 หมวดหมู่: Mobile 2 คอลัมน์, Tablet 3 คอลัมน์, Desktop 6 คอลัมน์ -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
+
+        <!-- Category 1: Graphic Design -->
+        <a href="#menu-design"
+          class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
+          <div
+            class="w-12 h-12 rounded-2xl bg-teal-100 text-tealDark flex items-center justify-center mb-3 group-hover:scale-110 transition">
+            <i data-lucide="layout" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">Graphic Design</h3>
+          <p class="text-[11px] text-slate-500 mt-1 leading-snug">Menu & Posters</p>
+        </a>
+
+        <!-- Category 2: Advertising -->
+        <a href="#digital-ads"
+          class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
+          <div
+            class="w-12 h-12 rounded-2xl bg-teal-100 text-tealDark flex items-center justify-center mb-3 group-hover:scale-110 transition">
+            <i data-lucide="megaphone" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">Advertising</h3>
+          <p class="text-[11px] text-slate-500 mt-1 leading-snug">Promo & Ads</p>
+        </a>
+
+        <!-- Category 3: Photographer -->
+        <a href="#photo-caption"
+          class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
+          <div
+            class="w-12 h-12 rounded-2xl bg-teal-100 text-tealDark flex items-center justify-center mb-3 group-hover:scale-110 transition">
+            <i data-lucide="camera" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">Photographer</h3>
+          <p class="text-[11px] text-slate-500 mt-1 leading-snug">Photos & Retouch</p>
+        </a>
+
+        <!-- Category 4: Video Editor -->
+        <a href="#video-content"
+          class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
+          <div
+            class="w-12 h-12 rounded-2xl bg-teal-100 text-tealDark flex items-center justify-center mb-3 group-hover:scale-110 transition">
+            <i data-lucide="video" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">Video Editor</h3>
+          <p class="text-[11px] text-slate-500 mt-1 leading-snug">Reels & Commercial</p>
+        </a>
+
+        <!-- Category 5: Product Design (เพิ่มใหม่) -->
+        <a href="#product-design"
+          class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
+          <div
+            class="w-12 h-12 rounded-2xl bg-teal-100 text-tealDark flex items-center justify-center mb-3 group-hover:scale-110 transition">
+            <i data-lucide="package" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">Product Design</h3>
+          <p class="text-[11px] text-slate-500 mt-1 leading-snug">Branding & Mockup</p>
+        </a>
+
+        <!-- Category 6: Event & Exhibition (เพิ่มใหม่) -->
+        <a href="#events"
+          class="group p-5 bg-[#f8f9fa] rounded-3xl border border-slate-200/80 hover:border-tealDark hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
+          <div
+            class="w-12 h-12 rounded-2xl bg-teal-100 text-tealDark flex items-center justify-center mb-3 group-hover:scale-110 transition">
+            <i data-lucide="calendar-check-2" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">Event & Booth</h3>
+          <p class="text-[11px] text-slate-500 mt-1 leading-snug">Exhibition & PR</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 3: 01 MENU DESIGN (PDF หน้า 3) ==================== -->
+  <section id="menu-design" class="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
+      <div>
+        <span class="text-tealDark font-extrabold text-xs uppercase tracking-wider">Project 01</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Menu Design & Cafe Layouts</h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+          "Design images and arrange the cafe's food menu." — ออกแบบสื่อสิ่งพิมพ์ เมนูเครื่องดื่ม และอาหารสำหรับคาเฟ่
+        </p>
+      </div>
+      <span class="text-xs font-semibold text-slate-400">Big Dog Cafe Project (7 Items)</span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- รูปที่ 1: Matcha Series Menu -->
+      <div
+        class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div
+            class="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-50 relative flex items-center justify-center">
+            <img src="image/a/1.webp" alt="Matcha Menu" class="w-full h-full object-contain" />
+            <span
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded-full text-tealDark">
+              Signature Menu
+            </span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Matcha Series Beverage Menu</h4>
+          <p class="text-[11px] text-slate-500 mt-1">จัดเลย์เอาต์เมนูชาเขียว เช่น มัทฉะลาเต้ (159฿), เพียวมัทฉะ (140฿),
+            มัทฉะส้ม (159฿)</p>
+        </div>
+      </div>
+
+      <!-- รูปที่ 2: All-Day Brunch & Classic Breakfast -->
+      <div
+        class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div
+            class="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-50 relative flex items-center justify-center">
+            <img src="image/a/2.webp" alt="All-Day Brunch" class="w-full h-full object-contain" />
+            <span
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded-full text-tealDark">
+              Food Poster
+            </span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">All-Day Brunch & Breakfast</h4>
+          <p class="text-[11px] text-slate-500 mt-1">Big Dog Classic Breakfast (420฿), Egg & Bacon (229฿) และ Australian
+            Sirloin Steak</p>
+        </div>
+      </div>
+
+      <!-- รูปที่ 3: Coffee, Soup & Drink Catalog -->
+      <div
+        class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div
+            class="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-50 relative flex items-center justify-center">
+            <img src="image/a/3.webp" alt="Drinks Catalog" class="w-full h-full object-contain" />
+            <span
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded-full text-tealDark">
+              Catalog Layout
+            </span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Drinks & Soup Menu Catalog</h4>
+          <p class="text-[11px] text-slate-500 mt-1">หมวดหมู่ Coffee, Non-Coffee, Soup และ Songkran Signature Mocktail
+          </p>
+        </div>
+      </div>
+
+      <!-- รูปที่ 4 -->
+      <div
+        class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div
+            class="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-50 relative flex items-center justify-center">
+            <img src="image/a/4.webp" alt="Menu Design Item 4" class="w-full h-full object-contain" />
+            <span
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded-full text-tealDark">
+              Menu Layout
+            </span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Signature Food & Bakery</h4>
+          <p class="text-[11px] text-slate-500 mt-1">ออกแบบหน้าเมนูอาหารจานหลัก เบเกอรี และของทานเล่นประจำร้าน</p>
+        </div>
+      </div>
+
+      <!-- รูปที่ 5 -->
+      <div
+        class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div
+            class="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-50 relative flex items-center justify-center">
+            <img src="image/a/5.webp" alt="Menu Design Item 5" class="w-full h-full object-contain" />
+            <span
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded-full text-tealDark">
+              Beverage Menu
+            </span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Specialty Drinks Series</h4>
+          <p class="text-[11px] text-slate-500 mt-1">ดีไซน์เมนูเครื่องดื่มพิเศษ จัดโทนสีและภาพถ่ายประกอบให้อ่านง่าย
+            ชัดเจน</p>
+        </div>
+      </div>
+
+      <!-- รูปที่ 6 -->
+      <div
+        class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div
+            class="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-50 relative flex items-center justify-center">
+            <img src="image/a/6.webp" alt="Menu Design Item 6" class="w-full h-full object-contain" />
+            <span
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded-full text-tealDark">
+              Seasonal Poster
+            </span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Seasonal Special Menu</h4>
+          <p class="text-[11px] text-slate-500 mt-1">โปสเตอร์โปรโมทเมนูประจำฤดูกาลและเซตอาหารจับคู่สุดคุ้ม</p>
+        </div>
+      </div>
+
+      <!-- รูปที่ 7 -->
+      <div
+        class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div
+            class="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-50 relative flex items-center justify-center">
+            <img src="image/a/7.webp" alt="Menu Design Item 7" class="w-full h-full object-contain" />
+            <span
+              class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded-full text-tealDark">
+              Dessert & Snacks
+            </span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Snacks & Pet-Friendly Treats</h4>
+          <p class="text-[11px] text-slate-500 mt-1">เมนูของว่าง เครื่องเคียง และเมนูขนมสำหรับสัตว์เลี้ยงภายในคาเฟ่</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 4: 02 DIGITAL ADVERTISING (PDF หน้า 4) ==================== -->
+  <section id="digital-ads" class="py-20 bg-white border-y border-slate-200/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
+        <div>
+          <span class="text-tealDark font-extrabold text-xs uppercase tracking-wider">Project 02</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Digital Advertising & Promotions</h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
+            แบนเนอร์และกราฟิกโปรโมชันบริการสัตว์เลี้ยงบนโซเชียลมีเดีย เน้น Call to Action และข้อมูลชัดเจน
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-slate-400">Social Ad Campaigns</span>
+      </div>
+
+      <!-- แถวละ 2 ภาพ (Grid 2 คอลัมน์) ขนาดใหญ่ขึ้นและเห็นรายละเอียดชัดเจน -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- รูปที่ 1: Day Care -->
+        <div
+          class="bg-[#f8f9fa] rounded-3xl p-5 sm:p-6 border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div
+              class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-white border border-slate-100 flex items-center justify-center p-2">
+              <img src="image/b/1.png" alt="Day Care Promotion" class="w-full h-full object-contain" />
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-tealDark bg-teal-100 px-2.5 py-0.5 rounded-full">Campaign</span>
+              <span class="text-xs text-slate-400 font-medium">Valid: Today - 31 Aug[cite: 1]</span>
+            </div>
+            <h4 class="font-bold text-base text-slate-900">Day Care ฝากอุ่นใจแถมว่ายน้ำ[cite: 1]</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              โปรโมชันราคาเดียว 750฿ (10:00 - 19:00 น.) พร้อมว่ายน้ำและอาบน้ำสุนัขครบวงจร[cite: 1]
+            </p>
+          </div>
+        </div>
+
+        <!-- รูปที่ 2: Midweek Splash -->
+        <div
+          class="bg-[#f8f9fa] rounded-3xl p-5 sm:p-6 border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div
+              class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-white border border-slate-100 flex items-center justify-center p-2">
+              <img src="image/b/2.png" alt="Midweek Splash" class="w-full h-full object-contain" />
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-tealDark bg-teal-100 px-2.5 py-0.5 rounded-full">Special 30% OFF[cite:
+                1]</span>
+              <span class="text-xs text-slate-400 font-medium">Online Booking Campaign</span>
+            </div>
+            <h4 class="font-bold text-base text-slate-900">Midweek Splash! สระว่ายน้ำสุนัข[cite: 1]</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              Park walk + Swim for 30 min + Bath & blow-dry ส่วนลดพิเศษสำหรับวันธรรมดา[cite: 1]
+            </p>
+          </div>
+        </div>
+
+        <!-- รูปที่ 3: 1 Free 1 Swimming -->
+        <div
+          class="bg-[#f8f9fa] rounded-3xl p-5 sm:p-6 border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div
+              class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-white border border-slate-100 flex items-center justify-center p-2">
+              <img src="image/b/3.png" alt="1 Free 1 Swimming" class="w-full h-full object-contain" />
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-tealDark bg-teal-100 px-2.5 py-0.5 rounded-full">1 Free 1[cite:
+                1]</span>
+              <span class="text-xs text-slate-400 font-medium">Valid: Today - 30 April[cite: 1]</span>
+            </div>
+            <h4 class="font-bold text-base text-slate-900">1 Free 1 Swimming Session[cite: 1]</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              ว่ายน้ำ 30-45 นาที แถมฟรี 1 รอบเฉพาะวันธรรมดา เปิดรับจองสิทธิ์ล่วงหน้าผ่านระบบ[cite: 1]
+            </p>
+          </div>
+        </div>
+
+        <!-- รูปที่ 4: Dog Hotel -->
+        <div
+          class="bg-[#f8f9fa] rounded-3xl p-5 sm:p-6 border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div
+              class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-white border border-slate-100 flex items-center justify-center p-2">
+              <img src="image/b/4.png" alt="Dog Hotel Upgrade" class="w-full h-full object-contain" />
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-tealDark bg-teal-100 px-2.5 py-0.5 rounded-full">Hotel Service[cite:
+                1]</span>
+              <span class="text-xs text-slate-400 font-medium">Rates: 540฿ - 4,500฿[cite: 1]</span>
+            </div>
+            <h4 class="font-bold text-base text-slate-900">Dog Hotel เช็กอินอัปเกรดห้องทันที[cite: 1]</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              ตารางเรตราคาวันธรรมดาและวันหยุด พร้อมสิทธิพิเศษส่วนลด 10% - 20% สำหรับการเข้าพัก[cite: 1]
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ปุ่ม Action ด้านล่างสำหรับดูภาพ/แคมเปญทั้งหมด -->
+    <div class="mt-12 flex justify-center">
+      <a href="#more-gallery"
+        class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 hover:bg-tealDark text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+        <i data-lucide="images" class="w-4 h-4 text-teal-300"></i>
+        <span>ดูภาพแบนเนอร์และกราฟิกเพิ่มเติม</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 5: 03 PET PHOTO & CAPTION (PDF หน้า 5) ==================== -->
+  <section id="photo-caption" class="py-20 px-4 sm:px-6 max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
+      <div>
+        <span class="text-tealDark font-extrabold text-xs uppercase tracking-wider">Project 03</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Pet Photography & Social Captions</h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+          "Creative concept planning, pet photo retouching, and write captions for social media posts."[cite: 1]
+        </p>
+      </div>
+      <span class="text-xs font-semibold text-slate-400">Content Creation</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- ภาพที่ 1: Chow Chow thuay-Cha -->
+      <div
+        class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 group flex flex-col justify-between">
+        <div>
+          <div class="w-full aspect-[4/5] overflow-hidden bg-slate-50 flex items-center justify-center p-2">
+            <img src="image/c/1.png" alt="Chow Chow thuay-Cha"
+              class="w-full h-full object-contain group-hover:scale-105 transition duration-500" />
+          </div>
+          <div class="p-5">
+            <div class="font-script text-2xl text-tealDark mb-1">Chow Chow "thuay-Cha"[cite: 1]</div>
+            <p class="text-xs font-semibold text-slate-800">Concept: น้องถ้วยชาขนฟู</p>
+            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+              ภาพถ่ายแสงธรรมชาติกลางแจ้ง ดึงคาแรกเตอร์ความสดใสและน่ารักของสุนัขพันธุ์เชาเชาสำหรับโพสต์แนะนำสมาชิกคาเฟ่
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ภาพที่ 2: Too cute to wake up -->
+      <div
+        class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 group flex flex-col justify-between">
+        <div>
+          <div class="w-full aspect-[4/5] overflow-hidden bg-slate-50 flex items-center justify-center p-2">
+            <img src="image/c/2.png" alt="Too cute to wake up"
+              class="w-full h-full object-contain group-hover:scale-105 transition duration-500" />
+          </div>
+          <div class="p-5">
+            <div class="font-script text-2xl text-tealDark mb-1">"Too cute to wake up"[cite: 1]</div>
+            <p class="text-xs font-semibold text-slate-800">Concept: โมเมนต์การนอนหลับสุดคิวท์</p>
+            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+              แต่งภาพโทนละมุน อบอุ่น พร้อมเขียนแคปชันสายคอมเมดี้เรียกเอนเกจเมนต์และยอดไลก์จากทาสหมาในวันหยุด
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ภาพที่ 3: Come for the vibes, stay for dogs -->
+      <div
+        class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 group flex flex-col justify-between">
+        <div>
+          <div class="w-full aspect-[4/5] overflow-hidden bg-slate-50 flex items-center justify-center p-2">
+            <img src="image/c/3.png" alt="Come for the vibes, stay for dogs"
+              class="w-full h-full object-contain group-hover:scale-105 transition duration-500" />
+          </div>
+          <div class="p-5">
+            <div class="font-script text-2xl text-tealDark mb-1">"Come for the vibes, stay for dogs"[cite: 1]</div>
+            <p class="text-xs font-semibold text-slate-800">Concept: ประตูคาเฟ่ & ไลฟ์สไตล์</p>
+            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+              ภาพบรรยากาศหน้าร้านต้อนรับลูกค้า เชื่อมโยงกับโปรโมชันช่วงเทศกาล (เช่น Mother's Day Free for Mom)[cite: 1]
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ปุ่ม Action ด้านล่างสำหรับดูภาพ/แคมเปญทั้งหมด -->
+    <div class="mt-12 flex justify-center">
+      <a href="#more-gallery"
+        class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 hover:bg-tealDark text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+        <i data-lucide="images" class="w-4 h-4 text-teal-300"></i>
+        <span>ดูภาพ Pet Photography เพิ่มเติม</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 6: 04 & 05 COMMERCIAL & VIDEO CONTENT ==================== -->
+  <section id="video-content" class="py-20 bg-[#162a30] text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
+
+      <!-- Row 1: รายละเอียดเนื้อหา + วิดีโอหลักใน Phone Mockup -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+        <!-- Text & Detail Column -->
+        <div class="lg:col-span-6 space-y-5">
+          <span class="text-teal-300 font-extrabold text-xs uppercase tracking-wider">Project 04 & 05</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Commercial Video & Video Content</h2>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            ดูแลกระบวนการถ่ายทำและตัดต่อวิดีโอ (Video Cutting & Editing) สำหรับแพลตฟอร์ม TikTok, Instagram Reels,
+            YouTube Shorts และวิดีโอโฆษณาเชิงพาณิชย์
+          </p>
+
+          <div class="space-y-3 pt-2">
+            <div class="flex items-start gap-3 bg-white/10 p-3.5 rounded-2xl backdrop-blur-sm border border-white/10">
+              <div class="p-2 rounded-xl bg-tealDark text-teal-300">
+                <i data-lucide="play-circle" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm">Dog Journey Commercial Video</h4>
+                <p class="text-xs text-slate-300 mt-0.5">การฝึกสุนัขตามคำสั่ง (and even bark on cue), พาน้องหมาทำกิจกรรม
+                  และสตอรี่ชวนเที่ยวคาเฟ่</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 bg-white/10 p-3.5 rounded-2xl backdrop-blur-sm border border-white/10">
+              <div class="p-2 rounded-xl bg-tealDark text-teal-300">
+                <i data-lucide="smartphone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm">Reels & Viral Content Creation</h4>
+                <p class="text-xs text-slate-300 mt-0.5">คอนเทนต์น้องหมาคิดเลขได้, ประจำโซนหมาเล็ก, หรือคลิปแมว vs หมา
+                  เรียกยอดแชร์และคอมเมนต์ต่อเนื่อง</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main TikTok Video (คืนค่าแสงธรรมชาติแบบเดิม) -->
+        <div class="lg:col-span-6 flex justify-center">
+          <div
+            class="w-[300px] sm:w-[320px] bg-phoneBorder rounded-[44px] p-2.5 shadow-2xl border-4 border-slate-700/80 relative">
+            <div class="w-full h-[520px] bg-black rounded-[36px] overflow-hidden relative flex flex-col items-center">
+
+              <!-- Phone Top Status Bar -->
+              <div
+                class="absolute top-0 left-0 right-0 flex justify-between items-center text-[10px] text-white px-6 pt-3 z-30 pointer-events-none">
+                <span class="font-semibold">9:41</span>
+                <div class="w-18 h-3.5 bg-phoneBorder rounded-full mx-auto"></div>
+                <div class="flex gap-1.5 items-center">
+                  <i data-lucide="wifi" class="w-3 h-3"></i>
+                  <i data-lucide="battery" class="w-3.5 h-3.5"></i>
+                </div>
+              </div>
+
+              <!-- Focus Area -->
+              <div class="w-full h-full flex justify-center items-start overflow-hidden bg-black">
+                <div class="-mt-12 w-full flex justify-center scale-[0.96]">
+                  <blockquote class="tiktok-embed"
+                    cite="https://www.tiktok.com/@ceotony.bigdogcafe/video/7622303869950823687"
+                    data-video-id="7622303869950823687" style="width: 100%; max-width: 325px; margin: 0 auto;">
+                    <section>
+                      <a target="_blank" title="@ceotony.bigdogcafe"
+                        href="https://www.tiktok.com/@ceotony.bigdogcafe?refer=embed">@ceotony.bigdogcafe</a>
+                      <p>Big Dog Cafe Commercial &amp; Dog Journey Video</p>
+                    </section>
+                  </blockquote>
+                </div>
+              </div>
+
+              <!-- Home Bar Indicator -->
+              <div class="absolute bottom-1.5 left-0 right-0 py-1 flex justify-center z-30 pointer-events-none">
+                <div class="w-24 h-1 bg-white/40 rounded-full"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Row 2: วิดีโอย่อย 3 คลิป (คืนค่าแสงธรรมชาติแบบเดิม) -->
+      <div class="pt-8 border-t border-white/10 space-y-4">
+        <div class="flex items-center justify-between">
+          <h4 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 text-teal-300"></i>
+            <span>More Short Form & Reels Clips</span>
+          </h4>
+          <span class="text-xs text-slate-400">Related Highlights</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+          <!-- Sub Video 1 -->
+          <div
+            class="w-full max-w-[320px] mx-auto aspect-[9/16] bg-white/5 p-1 sm:p-1 rounded-[36px] border border-white/10 flex flex-col shadow-lg">
+            <div class="w-full h-full rounded-[28px] overflow-hidden bg-black flex justify-center items-start relative">
+              <div class="w-full scale-[0.98] origin-top -mt-2">
+                <blockquote class="tiktok-embed"
+                  cite="https://www.tiktok.com/@ceotony.bigdogcafe/video/7610673420828773650"
+                  data-video-id="7610673420828773650" style="max-width: 100%; margin: 0 auto;">
+                  <section>
+                    <a target="_blank" title="@ceotony.bigdogcafe"
+                      href="https://www.tiktok.com/@ceotony.bigdogcafe?refer=embed">@ceotony.bigdogcafe</a>
+                  </section>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub Video 2 -->
+          <div
+            class="w-full max-w-[320px] mx-auto aspect-[9/16] bg-white/5 p-1 sm:p-1 rounded-[36px] border border-white/10 flex flex-col shadow-lg">
+            <div class="w-full h-full rounded-[28px] overflow-hidden bg-black flex justify-center items-start relative">
+              <div class="w-full scale-[0.98] origin-top -mt-2">
+                <blockquote class="tiktok-embed"
+                  cite="https://www.tiktok.com/@ceotony.bigdogcafe/video/7636682575955643656"
+                  data-video-id="7636682575955643656" style="max-width: 100%; margin: 0 auto;">
+                  <section>
+                    <a target="_blank" title="@ceotony.bigdogcafe"
+                      href="https://www.tiktok.com/@ceotony.bigdogcafe?refer=embed">@ceotony.bigdogcafe</a>
+                  </section>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub Video 3 -->
+          <div
+            class="w-full max-w-[320px] mx-auto aspect-[9/16] bg-white/5 p-1 sm:p-1 rounded-[36px] border border-white/10 flex flex-col shadow-lg">
+            <div class="w-full h-full rounded-[28px] overflow-hidden bg-black flex justify-center items-start relative">
+              <div class="w-full scale-[0.98] origin-top -mt-2">
+                <blockquote class="tiktok-embed"
+                  cite="https://www.tiktok.com/@ceotony.bigdogcafe/video/7603706407677922578"
+                  data-video-id="7603706407677922578" style="max-width: 100%; margin: 0 auto;">
+                  <section>
+                    <a target="_blank" title="@ceotony.bigdogcafe"
+                      href="https://www.tiktok.com/@ceotony.bigdogcafe?refer=embed">@ceotony.bigdogcafe</a>
+                  </section>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- วางไว้ส่วนท้ายของ Section ในธีมมืด -->
+    <div class="mt-12 flex justify-center">
+      <a href="#more-gallery"
+        class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs sm:text-sm font-bold border border-teal-400/30 hover:border-teal-300 shadow-[0_0_20px_rgba(20,184,166,0.15)] hover:shadow-[0_0_25px_rgba(20,184,166,0.35)] backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5 group">
+        <i data-lucide="images" class="w-4 h-4 text-teal-300 group-hover:scale-110 transition-transform"></i>
+        <span>ดูวิดีโอใน TikTok เพิ่มเติม</span>
+        <i data-lucide="arrow-right"
+          class="w-4 h-4 text-slate-400 group-hover:text-teal-300 group-hover:translate-x-1 transition-all"></i>
+      </a>
+    </div>
+
+    <!-- TikTok Embed Script -->
+    <script async src="https://www.tiktok.com/embed.js"></script>
+  </section>
+
+  <!-- ==================== SECTION: GOOGLE DRIVE VIDEO SHOWCASE ==================== -->
+  <section id="drive-videos" class="py-20 bg-white text-slate-800 border-y border-slate-200/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
+
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+        <div>
+          <span
+            class="text-tealDark font-extrabold text-xs uppercase tracking-wider bg-tealSoft px-3 py-1 rounded-full border border-teal-200">
+            Video Production & Editing
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2">
+            Google Drive Video Portfolio
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
+            ผลงานถ่ายทำและตัดต่อวิดีโอ ทั้งรูปแบบแนวนอนและแนวตั้งสำหรับสื่อโซเชียลมีเดีย
+          </p>
+        </div>
+        <span
+          class="text-xs font-semibold text-tealDark bg-teal-50 px-3 py-1.5 rounded-full border border-teal-100 flex items-center gap-1.5 self-start md:self-auto">
+          <i data-lucide="folder" class="w-4 h-4"></i> Drive Showcase
+        </span>
+      </div>
+
+      <!-- 1. วิดีโอหลักแนวนอน (16:9 Landscape) -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-2 text-xs font-bold text-tealDark">
+          <i data-lucide="monitor" class="w-4 h-4"></i>
+          <span>Featured Master Video (Landscape 16:9)</span>
+        </div>
+
+        <div class="bg-[#f8f9fa] p-4 sm:p-5 rounded-3xl border border-slate-200/80 shadow-sm">
+          <div
+            class="w-full aspect-video rounded-2xl overflow-hidden bg-black relative border border-slate-200 shadow-inner">
+            <iframe src="https://drive.google.com/file/d/11p4oUzSqduXyYmXLSuKWaw6HW7BK2GAt/preview"
+              class="w-full h-full border-0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-4 pt-3 border-t border-slate-200">
+            <div>
+              <h4 class="font-bold text-sm sm:text-base text-slate-900">Commercial Long-form & Overview Video</h4>
+              <p class="text-xs text-slate-500 mt-0.5">
+                วิดีโอประชาสัมพันธ์ภาพรวม แนะนำบรรยากาศและบริการคาเฟ่สัตว์เลี้ยง
+              </p>
+            </div>
+            <a href="https://drive.google.com/file/d/11p4oUzSqduXyYmXLSuKWaw6HW7BK2GAt/view" target="_blank"
+              rel="noopener noreferrer"
+              class="text-[11px] font-bold text-tealDark bg-tealSoft hover:bg-teal-100 px-3 py-1 rounded-full border border-teal-200 self-start sm:self-auto flex items-center gap-1 transition">
+              <i data-lucide="external-link" class="w-3 h-3"></i> 1080p Full HD
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. วิดีโอรองแนวตั้ง 4 รายการ (ปรับ UI ปุ่มให้เล็กลง และจัดกึ่งกลางพอดีกรอบ) -->
+      <div class="space-y-4 pt-4 border-t border-slate-200">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-xs font-bold text-tealDark">
+            <i data-lucide="smartphone" class="w-4 h-4"></i>
+            <span>Vertical Stories & Reels</span>
+          </div>
+          <span class="text-xs text-slate-400">Reels & TikTok Format</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <!-- Vertical Video 1 -->
+          <div
+            class="bg-[#f8f9fa] p-0 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:border-tealDark/50 hover:shadow-md transition duration-300">
+            <div>
+              <div
+                class="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black relative border border-slate-200 mb-3 shadow-inner flex items-center justify-center">
+                <iframe src="https://drive.google.com/file/d/1PKYHYBjysfOGo-wbMGX14PyZYXn4gU48/preview"
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] scale-[0.72] origin-center border-0 pointer-events-auto"
+                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+                </iframe>
+              </div>
+              <div class="p-3">
+                <h5 class="text-xs font-bold text-slate-900 truncate">Reels Highlight 01</h5>
+                <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">คลิปแนะนำกิจกรรมและโมเมนต์สุนัขในคาเฟ่</p>
+                <a href="https://drive.google.com/file/d/1PKYHYBjysfOGo-wbMGX14PyZYXn4gU48/view" target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[10px] text-tealDark hover:text-tealAccent font-semibold mt-3 flex items-center gap-1 transition">
+                  <i data-lucide="play" class="w-3 h-3 fill-current"></i> ดูคลิปเต็มบน Drive
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vertical Video 2 -->
+          <div
+            class="bg-[#f8f9fa] p-0 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:border-tealDark/50 hover:shadow-md transition duration-300">
+            <div>
+              <div
+                class="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black relative border border-slate-200 mb-3 shadow-inner flex items-center justify-center">
+                <iframe src="https://drive.google.com/file/d/1juZUsWNSKJiSkHvbP21vD6XNjeLSpI5O/preview"
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] scale-[0.72] origin-center border-0 pointer-events-auto"
+                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+                </iframe>
+              </div>
+              <div class="p-3">
+                <h5 class="text-xs font-bold text-slate-900 truncate">Reels Highlight 02</h5>
+                <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">ไฮไลต์การว่ายน้ำและ Dog Daycare</p>
+                <a href="https://drive.google.com/file/d/1juZUsWNSKJiSkHvbP21vD6XNjeLSpI5O/view" target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[10px] text-tealDark hover:text-tealAccent font-semibold mt-3 flex items-center gap-1 transition">
+                  <i data-lucide="play" class="w-3 h-3 fill-current"></i> ดูคลิปเต็มบน Drive
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vertical Video 3 -->
+          <div
+            class="bg-[#f8f9fa] p-0 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:border-tealDark/50 hover:shadow-md transition duration-300">
+            <div>
+              <div
+                class="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black relative border border-slate-200 mb-3 shadow-inner flex items-center justify-center">
+                <iframe src="https://drive.google.com/file/d/1X1ijls2v9y0jIOtJigiAfBhaJmUAaapZ/preview"
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] scale-[0.72] origin-center border-0 pointer-events-auto"
+                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+                </iframe>
+              </div>
+              <div class="p-3">
+                <h5 class="text-xs font-bold text-slate-900 truncate">Reels Highlight 03</h5>
+                <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">เบื้องหลังการฝึกและการดูแลสัตว์เลี้ยง</p>
+                <a href="https://drive.google.com/file/d/1X1ijls2v9y0jIOtJigiAfBhaJmUAaapZ/view" target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[10px] text-tealDark hover:text-tealAccent font-semibold mt-3 flex items-center gap-1 transition">
+                  <i data-lucide="play" class="w-3 h-3 fill-current"></i> ดูคลิปเต็มบน Drive
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vertical Video 4 -->
+          <div
+            class="bg-[#f8f9fa] p-0 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:border-tealDark/50 hover:shadow-md transition duration-300">
+            <div>
+              <div
+                class="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black relative border border-slate-200 mb-3 shadow-inner flex items-center justify-center">
+                <iframe src="https://drive.google.com/file/d/1Ele_O4xJe1xiwdO7IjjN3XGEixgErMty/preview"
+                  class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] scale-[0.72] origin-center border-0 pointer-events-auto"
+                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+                </iframe>
+              </div>
+              <div class="p-3">
+                <h5 class="text-xs font-bold text-slate-900 truncate">Reels Highlight 04</h5>
+                <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">คลิปคอนเทนต์ไวรัลเรียกยอดเอนเกจเมนต์</p>
+                <a href="https://drive.google.com/file/d/1Ele_O4xJe1xiwdO7IjjN3XGEixgErMty/view" target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[10px] text-tealDark hover:text-tealAccent font-semibold mt-3 flex items-center gap-1 transition">
+                  <i data-lucide="play" class="w-3 h-3 fill-current"></i> ดูคลิปเต็มบน Drive
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- วางไว้ส่วนท้ายของ Section ในธีมสว่าง -->
+    <div class="mt-12 flex justify-center">
+      <a href="#more-gallery"
+        class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-tealSoft hover:bg-teal-100 text-tealDark text-xs sm:text-sm font-bold border border-teal-200/80 hover:border-teal-300 shadow-xs hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 group">
+        <i data-lucide="images" class="w-4 h-4 text-tealDark group-hover:scale-110 transition-transform"></i>
+        <span>ดูวิดีโอเพิ่มเติม</span>
+        <i data-lucide="arrow-right"
+          class="w-4 h-4 text-tealDark/70 group-hover:text-tealDark group-hover:translate-x-1 transition-all"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 7: 06 PRODUCT & PACKAGING DESIGN (PDF หน้า 7) ==================== -->
+  <section id="product-design" class="py-20 px-4 sm:px-6 max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
+      <div>
+        <span class="text-tealDark font-extrabold text-xs uppercase tracking-wider">Project 06</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Product Design & Branding Mockup</h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+          การออกแบบผลิตภัณฑ์ สกินแคร์ และอัตลักษณ์แบรนด์ "LushGlow / AURAÉ"
+        </p>
+      </div>
+      <span class="text-xs font-semibold text-slate-400">Branding & Packaging</span>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- ส่วนที่ 1: ภาพบน + รายละเอียดคอนเซปต์แบรนด์ AURAÉ -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm space-y-6">
+        <!-- ปลดล็อก aspect-ratio เพื่อให้ภาพกว้างเต็มและสูงตามขนาดจริงโดยไม่ถูกย่อ -->
+        <div class="w-full rounded-2xl overflow-hidden bg-rose-50/40 border border-slate-100 relative">
+          <img src="image/f/1.png" alt="AURAÉ Brand Identity" class="w-full h-auto block object-cover" />
+          <div
+            class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-slate-800 shadow-xs">
+            AURAÉ Brand Concept
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-rose-500 bg-rose-50 px-2.5 py-1 rounded-full">
+            Skin Care & Beauty Concept
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-tight pt-1">
+            AURAÉ — "Elevate Your Glow, Embrace the Aura"
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            งานออกแบบอัตลักษณ์ตราสินค้า (Brand Identity) สกินแคร์บำรุงผิว เน้นความอ่อนโยน ผสานคุณค่าจากธรรมชาติ
+            เพื่อผิวแลดูสุขภาพดี (Healthy Aura)
+          </p>
+        </div>
+
+        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+          <h5 class="text-xs font-bold text-slate-800">กลุ่มเป้าหมาย (Target Audience)</h5>
+          <p class="text-[11px] text-slate-500 mt-1">
+            กลุ่มคนรุ่นใหม่ที่ใส่ใจการดูแลผิวหน้า และมองหาความพรีเมียมในราคาเข้าถึงได้
+          </p>
+        </div>
+      </div>
+
+      <!-- ส่วนที่ 2: ภาพล่าง + รายละเอียดบรรจุภัณฑ์ LushGlow -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm space-y-6">
+        <!-- ปลดล็อก aspect-ratio เพื่อให้ภาพกว้างเต็มและสูงตามขนาดจริงโดยไม่ถูกย่อ -->
+        <div class="w-full rounded-2xl overflow-hidden bg-rose-50/40 border border-slate-100 relative">
+          <img src="image/f/2.png" alt="LushGlow Face Wash" class="w-full h-auto block object-cover" />
+          <div
+            class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-slate-800 shadow-xs">
+            LushGlow Face Wash (150ml)
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-rose-500 bg-rose-50 px-2.5 py-1 rounded-full">
+            Packaging & Mockup
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-tight pt-1">
+            LushGlow Cleanser Packaging
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            การขึ้นตัวอย่างผลิตภัณฑ์แบบ 3D Mockup เพื่อจัดวางเลย์เอาต์ฉลากสินค้าและสื่อสารภาพลักษณ์สินค้าจริงก่อนผลิต
+          </p>
+        </div>
+
+        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+          <h5 class="text-xs font-bold text-slate-800">การดีไซน์บรรจุภัณฑ์ (Packaging)</h5>
+          <p class="text-[11px] text-slate-500 mt-1">
+            เลือกใช้สีพีช-พาสเทล ให้ความรู้สึกละมุน อ่อนโยน และมีความเป็นมินิมอลโมเดิร์น
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 8: 07 EVENT PHOTOGRAPHY (PDF หน้า 8) ==================== -->
+  <section id="events" class="py-20 bg-white border-y border-slate-200/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
+        <div>
+          <span class="text-tealDark font-extrabold text-xs uppercase tracking-wider">Project 07</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Event Photography & Community Coverage
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
+            "ผลงานถ่ายภาพตามงานอีเว้นท์ต่างๆ พร้อมนำไปใช้สำหรับทำสื่อโซเชียล" (BKK DOG SCTY, Spike, Pet Gatherings)
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-slate-400">On-site Shoot & Run (6 Items)</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- ภาพที่ 1: Pet Community Gatherings -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
+              <img src="image/g/1.png" alt="Pet Community Gatherings" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-sm text-slate-900">Pet Community Gatherings</h4>
+              <p class="text-[11px] text-slate-500 mt-1">
+                เก็บบรรยากาศผู้เข้าร่วมงานและสุนัขในสวนสาธารณะสำหรับ PR กิจกรรมคอมมูนิตี้
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ภาพที่ 2: Brand Event Coverage (Spike) -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
+              <img src="image/g/2.png" alt="Brand Event Coverage" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-sm text-slate-900">Brand Event Coverage (Spike)</h4>
+              <p class="text-[11px] text-slate-500 mt-1">
+                ถ่ายภาพเวที กิจกรรมแจกของรางวัล และการมีส่วนร่วมของลูกค้ากับแบรนด์
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ภาพที่ 3: Candid & Behind the Scenes -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
+              <img src="image/g/3.png" alt="Candid & BTS" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-sm text-slate-900">Candid & Behind the Scenes</h4>
+              <p class="text-[11px] text-slate-500 mt-1">
+                เก็บภาพเบื้องหลังและโมเมนต์ที่เป็นธรรมชาติ พร้อมใช้งานทันทีบน Instagram Stories
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ภาพที่ 4: BKK DOG SCTY Showcase -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
+              <img src="image/g/4.png" alt="BKK DOG SCTY" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-sm text-slate-900">BKK DOG SCTY Installation</h4>
+              <p class="text-[11px] text-slate-500 mt-1">
+                ถ่ายภาพจุดเช็กอินและพร็อพตกแต่งสถานที่ ช่วยเพิ่มการรับรู้แบรนด์บนโซเชียล
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ภาพที่ 5: Pet Outdoor Activity -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
+              <img src="image/g/5.png" alt="Pet Outdoor Activity" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-sm text-slate-900">Outdoor Workshop & Activities</h4>
+              <p class="text-[11px] text-slate-500 mt-1">
+                บันทึกภาพกิจกรรมเวิร์กช็อประหว่างเจ้าของและสัตว์เลี้ยงเพื่อใช้ทำ Content Recap
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ภาพที่ 6: Group Photo & Community Highlights -->
+        <div
+          class="rounded-3xl overflow-hidden shadow-sm border border-slate-100 bg-slate-50 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200">
+              <img src="image/g/6.png" alt="Group Photo" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-sm text-slate-900">Event Group Photo & Wrap-up</h4>
+              <p class="text-[11px] text-slate-500 mt-1">
+                ภาพรวมผู้เข้าร่วมงานทั้งหมดสำหรับทำสื่อสรุปภาพรวมโครงการและการประชาสัมพันธ์
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="mt-12 flex justify-center">
+      <a href="#more-gallery"
+        class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 hover:bg-tealDark text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg shadow-slate-900/10 hover:shadow-teal-900/20 transition-all duration-300 transform hover:-translate-y-0.5 group">
+        <i data-lucide="images" class="w-4 h-4 text-teal-300 group-hover:scale-110 transition-transform"></i>
+        <span>ดูภาพผลงานเพิ่มเติม</span>
+        <i data-lucide="arrow-right"
+          class="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER & CONTACT ==================== -->
+  <footer class="py-14 bg-[#112429] text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
+      <span class="text-teal-300 font-bold text-xs uppercase tracking-widest mb-2">Get in Touch</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold">Let's Collaborate & Create Engaging Content</h2>
+      <p class="text-slate-300 text-xs sm:text-sm max-w-md mt-2 mb-8">
+        สนใจร่วมงานด้าน Digital Marketing, Content Creator, Graphic Design หรือตัดต่อวิดีโอ สามารถติดต่อได้ทันทีครับ
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold">
+        <a href="tel:0827829949"
+          class="bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-3 rounded-full flex items-center gap-2 transition">
+          <i data-lucide="phone" class="w-4 h-4 text-teal-300"></i>
+          <span>082-7829949</span>
+        </a>
+
+        <a href="mailto:auamdowpamonphon@gmail.com"
+          class="bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-3 rounded-full flex items-center gap-2 transition">
+          <i data-lucide="mail" class="w-4 h-4 text-teal-300"></i>
+          <span>auamdowpamonphon@gmail.com</span>
+        </a>
+
+        <a href="http://www.sidsuch.co" target="_blank"
+          class="bg-tealDark hover:bg-tealAccent px-5 py-3 rounded-full flex items-center gap-2 transition shadow-md">
+          <i data-lucide="globe" class="w-4 h-4 text-teal-300"></i>
+          <span>www.sidsuch.co</span>
+        </a>
+      </div>
+
+      <div class="w-full max-w-xs h-[1px] bg-white/10 my-8"></div>
+
+      <div class="text-[11px] text-slate-400 space-y-1">
+        <p>Bangkok, Thailand (10310) • Bachelor of Communication Arts, Rangsit University</p>
+        <p class="text-slate-500">Portfolio Website Designed for Auamdow Phapolmon</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
